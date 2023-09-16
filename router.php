@@ -1,5 +1,5 @@
 <?php
-
+require_once 'app/tasks.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -14,9 +14,16 @@ if (!empty( $_GET['action'])) {
 $params = explode('/', $action);
 
 switch ($params[0]) { // en la primer posicion tengo la accion real
-   
-   
+   case 'home': 
+    showRepuestos();
+    break;
+
     default: 
         show404();
         break;
+
+}
+
+function show404(){
+    echo "error";
 }
