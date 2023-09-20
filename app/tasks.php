@@ -5,7 +5,9 @@ function showRepuestos(){
     require_once 'templates/header.php';
 
     $repuestos=getTasks();
-    var_dump($repuestos);
-    die();
+    
+    foreach($repuestos as $repuesto){
+        echo "<li>$repuesto->idProducto</li>";
+    }
 
 }

@@ -25,22 +25,22 @@ function getTasks() {
 function insertTask($idProducto, $idCodigoProducto, $nombreProducto, $precio, $marca, $idCategoria) {
     $db = getConection();
 
-    $query = $db_web->prepare('INSERT INTO repuestos (idProducto, idCodigoProducto, nombreProducto, precio, marca idCategoria) VALUES(?,?,?,?,?,?)');
+    $query = $db->prepare('INSERT INTO repuestos (idProducto, idCodigoProducto, nombreProducto, precio, marca idCategoria) VALUES(?,?,?,?,?,?)');
     $query->execute([$idProducto, $idCodigoProducto, $nombreProducto, $precio, $marca, $idCategoria]);
 
-    return $db_web->lastInsertId();
+    return $db->lastInsertId();
 }
 
 function deleteTask($id) {
     $db = getConection();
 
-    $query = $db_web->prepare('DELETE FROM repuestos WHERE id = ?');
+    $query = $db->prepare('DELETE FROM repuestos WHERE id = ?');
     $query->execute([$id]);
 }
 
 function updateTask($id) {
     $db = getConection();
     
-    $query = $db_web->prepare('UPDATE repuestos SET finalizada = 1 WHERE id = ?');
+    $query = $db->prepare('UPDATE repuestos SET finalizada = 1 WHERE id = ?');
     $query->execute([$id]);
 }
