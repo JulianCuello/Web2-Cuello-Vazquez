@@ -9,7 +9,7 @@ if (!empty( $_GET['action'])) {
     $action = $_GET['action'];
 }
 
-// listar    ->         taskController->showTasks();
+// listar    ->         ShowListController->showList();  //solo lo ve el usuario
 // agregar   ->         taskController->addTask();
 // eliminar/:ID  ->     taskController->removeTask($id); 
 // finalizar/:ID  ->    taskController->finishTask($id);
@@ -21,7 +21,12 @@ $params = explode('/', $action);
 switch ($params[0]) {
     case 'listar':
         $controller = new TaskController();
-        $controller->showTasks();
+        $controller->showList();
+        break;
+    case 'listarId':
+        
+        $controller = new TaskController();
+        $controller->showListById($params[1]);
         break;
     case 'agregar':
         $controller = new TaskController();

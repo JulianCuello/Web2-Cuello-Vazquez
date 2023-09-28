@@ -12,12 +12,19 @@ class TaskController {
         
     }
 
-    public function showTasks() {
+
+    public function showListById($id) {
         // obtengo tareas del controlador
-        $tasks = $this->model->getTasks();
-        
+        $tasks = $this->model->getUserListById($id);
         // muestro las tareas desde la vista
-        $this->view->showTasks($tasks);
+        $this->view->showUserList($tasks);
+    }
+
+    public function showList() {
+        // obtengo tareas del controlador
+        $tasks = $this->model->getUserList();
+        // muestro las tareas desde la vista
+        $this->view->showUserList($tasks);
     }
 
     public function addTask() {
