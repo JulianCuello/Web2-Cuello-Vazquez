@@ -3,14 +3,16 @@
     <div class="row">
         <div class="col-9">
             <div class="form-group">
-                <label>Título</label>
+                <label>Producto</label>
                 <input required name="title" type="text" class="form-control">
             </div>
         </div>
 
         <div class="col-3">
             <div class="form-group">
-                <label>Prioridad</label>
+                <label>Cantidad</label>
+                
+
                 <select required name="priority" class="form-control">
                     <option value="1">1</option>
                     <option value="2">2</option>
