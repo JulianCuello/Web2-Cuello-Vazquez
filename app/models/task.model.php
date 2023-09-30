@@ -50,4 +50,25 @@ function updateTask($id) {
     $query = $this->db->prepare('UPDATE repuestos SET finalizada = 1 WHERE id = ?');
     $query->execute([$id]);
 }
+
+function getCategoria(){
+    $query = $this->db->prepare('SELECT * FROM `categoria`');
+        $query->execute();
+
+        // $tasks es un arreglo de repuestos
+        $categorias = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $categorias;   
+}
+
+function getCategoriaById($id){
+    $query = $this->db->prepare('SELECT * FROM `repuestos` WHERE idCategoria = ?');
+        $query->execute([$id]);
+
+        // $tasks es un arreglo de repuestos
+        $categoria = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $categoria;   
+}
+
 }

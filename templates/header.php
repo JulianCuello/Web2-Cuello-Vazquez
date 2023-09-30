@@ -27,14 +27,14 @@
         <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="categoria">Categorias</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+        <a class="nav-link dropdown-toggle" href="categoria" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          SeleccionarCategoria
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Fiat</a>
+          <a class="dropdown-item" href="categoriaId/1">Motor</a>
           <a class="dropdown-item" href="#">Chevrolet</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Renault</a>

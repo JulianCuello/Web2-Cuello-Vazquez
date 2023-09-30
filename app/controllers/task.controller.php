@@ -12,7 +12,6 @@ class TaskController {
         
     }
 
-
     public function showListById($id) {
         // obtengo tareas del controlador
         $tasks = $this->model->getUserListById($id);
@@ -62,5 +61,16 @@ class TaskController {
         $this->model->updateTask($id);
         header('Location: ' . BASE_URL);
     }
+
+    function showCategoria(){
+        $categorias=$this->model->getCategoria();
+        $this->view->showCategories($categorias);    
+        }
+
+    function showCategoriaById($id){
+        $categoria=$this->model->getCategoriaById($id);
+        $this->view->showUserLista($categoria);
+    }
+    
 
 }
