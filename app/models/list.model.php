@@ -1,33 +1,29 @@
 <?php
 
-class TaskModel {
+class ListModel {
     private $db;
 
     function __construct() {
         $this->db = new PDO('mysql:host=localhost;dbname=repuestos;charset=utf8', 'root', '');
     }
 
-    /**
-     * Obtiene y devuelve de la base de datos todas las tareas.
-     */
-    function getUserList() {
-        $query = $this->db->prepare('SELECT * FROM `repuestos` JOIN categoria ON repuestos.idCategoria=categoria.idCategoria');
+    
+    function getList() {//consulta por la lista, incluida la categoria a la que corresponden
+        $query = $this->db->prepare('SELECT repuestos.*, categoria.categoria FROM repuestos JOIN categoria ON repuestos.idCategoria = categoria.idCategoria;');
         $query->execute();
 
-        // $tasks es un arreglo de repuestos
-        $tasks = $query->fetchAll(PDO::FETCH_OBJ);
+        $list = $query->fetchAll(PDO::FETCH_OBJ);
 
-        return $tasks;
+        return $list;
     }
 
-    function getUserListById($id) {
+    function getUserListById($id) {//consulta por el item segun parametro incluida la categoria
         $query = $this->db->prepare('SELECT * FROM `repuestos` JOIN categoria ON repuestos.idCategoria=categoria.idCategoria WHERE idProducto = ?');
         $query->execute([$id]);
 
-        // $tasks es un arreglo de repuestos
-        $tasks = $query->fetchAll(PDO::FETCH_OBJ);
+        $item = $query->fetchAll(PDO::FETCH_OBJ);
 
-        return $tasks;
+        return $item;
     }
 
     /**

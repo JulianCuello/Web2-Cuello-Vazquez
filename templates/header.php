@@ -13,7 +13,7 @@
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="list">
     <img src="./img/logo.png" alt="logo" width= "150px">
    </a>
 
@@ -24,29 +24,26 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
+        <a class="nav-link" href="list">Listado <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="categoria">Categorias</a>
+        <a class="nav-link" href="category">Categorias</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="form">Agregar items</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="categoria" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="category" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           SeleccionarCategoria
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="categoriaId/1">Motor</a>
+          <a class="dropdown-item" href="categoryId/1">Motor</a>
           <a class="dropdown-item" href="#">Chevrolet</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Renault</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      
-    </form>
+
   </div>
 </nav>

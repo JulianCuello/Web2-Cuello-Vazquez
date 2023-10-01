@@ -1,32 +1,31 @@
 <?php
-require_once './app/models/task.model.php';
-require_once './app/views/task.view.php';
+require_once './app/models/list.model.php';
+require_once './app/views/list.view.php';
+  
 
-class TaskController {
+class ListController {
     private $model;
     private $view;
 
     public function __construct() {
-        $this->model = new TaskModel();
-        $this->view = new TaskView();
+        $this->model = new ListModel();
+        $this->view = new ListView();
         
     }
 
-    public function showListById($id) {
-        // obtengo tareas del controlador
-        $tasks = $this->model->getUserListById($id);
-        // muestro las tareas desde la vista
-        $this->view->showUserList($tasks);
+    public function showList() {//toda la lista
+        $list = $this->model->getList();   
+        $this->view->showItemList($list);
     }
 
-    public function showList() {
-        // obtengo tareas del controlador
-        $tasks = $this->model->getUserList();
-        // muestro las tareas desde la vista
-        $this->view->showUserList($tasks);
+    public function showListById($id) {//solo el item con el id del parametro
+        $item = $this->model->getUserListById($id);
+        $this->view->showItemListbyId($item);
     }
 
-    public function addTask() {
+    
+
+    public function addItem() {
 
         // obtengo los datos del usuario
 
@@ -62,15 +61,7 @@ class TaskController {
         header('Location: ' . BASE_URL);
     }
 
-    function showCategoria(){
-        $categorias=$this->model->getCategoria();
-        $this->view->showCategories($categorias);    
-        }
-
-    function showCategoriaById($id){
-        $categoria=$this->model->getCategoriaById($id);
-        $this->view->showUserLista($categoria);
-    }
+    
     
 
 }
