@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-10-2023 a las 19:01:31
+-- Tiempo de generación: 01-10-2023 a las 19:06:05
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `repuestos`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `idCategoria` int(11) NOT NULL,
+  `categoria` varchar(45) NOT NULL,
+  `material` varchar(45) NOT NULL,
+  `disponible` tinyint(1) NOT NULL,
+  `motor` int(11) NOT NULL,
+  `imagenCategoria` varchar(55) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`idCategoria`, `categoria`, `material`, `disponible`, `motor`, `imagenCategoria`) VALUES
+(1, 'motor', 'chapa', 1, 0, 'img/motor.jpg'),
+(2, 'carroceria', 'plastico', 1, 0, 'img/carroceria.jpg');
 
 -- --------------------------------------------------------
 
@@ -49,6 +72,12 @@ INSERT INTO `repuestos` (`idProducto`, `idCodigoProducto`, `nombreProducto`, `pr
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`idCategoria`);
 
 --
 -- Indices de la tabla `repuestos`
