@@ -71,12 +71,14 @@ class ListController {
         $idCategoria= $_POST['idCategoria'];
 
         //validaciones
-        $id = $this->model->updateItem($idProducto,$idCodigoProducto, $nombreProducto, $precio, $marca,$imagenProducto, $idCategoria);
+        $this->model->updateItem($idProducto,$idCodigoProducto, $nombreProducto, $precio, $marca,$imagenProducto, $idCategoria);
+        header('Location: ' . BASE_URL."listAdmin");
+        /*
         if ($id) {
             header('Location: ' . BASE_URL."listAdmin");
         } else {
             $this->view->showError("Error al insertar la tarea");
-        }
+        }*/
     }
     
 

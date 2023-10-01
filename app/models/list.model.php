@@ -43,8 +43,9 @@ function deleteItem($id) {
 }
 
 function updateItem($idProducto,$idCodigoProducto, $nombreProducto, $precio, $marca,$imagenProducto, $idCategoria) {    
-    $query = $this->db->prepare(UPDATE `repuestos` SET `idProducto`='[value-1]',`idCodigoProducto`='[value-2]',`nombreProducto`='[value-3]',`precio`='[value-4]',`marca`='[value-5]',`imagenProducto`='[value-6]',`idCategoria`='[value-7]' WHERE 1);
-    $query->execute([$idProducto,$idCodigoProducto, $nombreProducto, $precio, $marca,$imagenProducto, $idCategoria]);
+    $query = $this->db->prepare('UPDATE repuestos SET idCodigoProducto=?,nombreProducto=?,precio=?,marca=?,imagenProducto=?,idCategoria=? WHERE idProducto=?');
+    $query->execute([$idCodigoProducto, $nombreProducto, $precio, $marca,$imagenProducto, $idCategoria,$idProducto]);
+    //aca hay que preguntar como devuelvo un id valido.
 }
 
 function getCategoria(){
