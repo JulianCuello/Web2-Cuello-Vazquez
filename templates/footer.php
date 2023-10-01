@@ -64,9 +64,8 @@
       <div class="align-items-center">
         <span class="text-muted">2023 TUDAI, UNICEN</span>
         <span class="text-muted">
-          <p>Cuello Julian</p>
-          <p>Francisco Vazquez</p>
-          
+          <li>Cuello Julian</li>
+          <li>Vazquez Francisco</li>
         </span>
 
       </div>
