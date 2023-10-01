@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-09-2023 a las 23:27:17
+-- Tiempo de generación: 01-10-2023 a las 19:01:31
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,21 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categoria`
---
-
-CREATE TABLE `categoria` (
-  `idCategoria` int(11) NOT NULL,
-  `ubicacion` varchar(45) NOT NULL,
-  `material` varchar(45) NOT NULL,
-  `disponible` tinyint(1) NOT NULL,
-  `motor` int(11) NOT NULL,
-  `imagenCategoria` varchar(55) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `repuestos`
 --
 
@@ -48,19 +33,22 @@ CREATE TABLE `repuestos` (
   `nombreProducto` varchar(45) NOT NULL,
   `precio` int(11) NOT NULL,
   `marca` varchar(45) NOT NULL,
-  `imagenProducto` varchar(55) DEFAULT NULL,
+  `imagenProducto` varchar(55) NOT NULL,
   `idCategoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Índices para tablas volcadas
+-- Volcado de datos para la tabla `repuestos`
 --
 
+INSERT INTO `repuestos` (`idProducto`, `idCodigoProducto`, `nombreProducto`, `precio`, `marca`, `imagenProducto`, `idCategoria`) VALUES
+(8, 7087808, 'filtro', 2500, 'fiat', 'no disponible', 1),
+(10, 661826, 'optica', 50000, 'peugeot', 'no disponible', 2),
+(13, 1321, 'dasdas', 12313, 'asdas', 'sadasd', 1);
+
 --
--- Indices de la tabla `categoria`
+-- Índices para tablas volcadas
 --
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`idCategoria`);
 
 --
 -- Indices de la tabla `repuestos`
@@ -77,7 +65,7 @@ ALTER TABLE `repuestos`
 -- AUTO_INCREMENT de la tabla `repuestos`
 --
 ALTER TABLE `repuestos`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas

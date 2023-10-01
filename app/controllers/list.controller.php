@@ -60,11 +60,26 @@ class ListController {
         $this->model->deleteItem($id);
         header('Location: ' . BASE_URL."listAdmin");
     }
-    
-    function finishTask($id) {
-        $this->model->updateTask($id);
-        header('Location: ' . BASE_URL);
+
+    function showUpdate(){
+        $idProducto = $_POST['idProducto'];
+        $idCodigoProducto = $_POST['idCodigoProducto'];
+        $nombreProducto = $_POST['nombreProducto'];
+        $precio= $_POST['precio'];
+        $marca  = $_POST['marca'];
+        $imagenProducto=$_POST['imagenProducto'];
+        $idCategoria= $_POST['idCategoria'];
+
+        //validaciones
+        $id = $this->model->updateItem($idProducto,$idCodigoProducto, $nombreProducto, $precio, $marca,$imagenProducto, $idCategoria);
+        if ($id) {
+            header('Location: ' . BASE_URL."listAdmin");
+        } else {
+            $this->view->showError("Error al insertar la tarea");
+        }
     }
+    
+
 
     
     

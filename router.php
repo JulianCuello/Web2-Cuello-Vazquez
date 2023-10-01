@@ -3,6 +3,7 @@ require_once './app/controllers/list.controller.php';
 require_once './app/controllers/about.controller.php';
 require_once './app/controllers/category.controller.php';
 require_once './templates/form_alta.php';
+require_once './templates/form_update.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -51,6 +52,14 @@ switch ($params[0]) {
     case 'form':
         showForm();
         break;
+    case 'updateItem':
+        showFormUpdate($params[1]);
+        break;
+    case 'update':
+        $controller= new ListController();
+        $controller->showUpdate();
+        break;
+
     case 'addItem':
         $controller = new ListController();
         $controller->addItem();
