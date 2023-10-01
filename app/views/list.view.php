@@ -26,7 +26,7 @@ class ListView {
                         <td><?php echo $item->marca; ?></td>
                         <td><?php echo $item->imagenProducto; ?></td>
                         <td><?php echo $item->categoria; ?></td>
-                        <td><a href="listId/<?php echo $item->idProducto; ?>">Ver Producto</a></td>
+                        <td><a href="listId/<?php echo $item->idProducto; ?>" class="btn btn-primary">Ver Producto</a></td>
                     </tr>      
                 <?php } ?>
             </tbody>
@@ -67,7 +67,7 @@ class ListView {
                         <td><?php echo $item->disponible; ?></td>
                         <td><?php echo $item->motor; ?></td>
                         <td><img src="<?php echo $item->imagenCategoria; ?>"class="imagen"></td>
-                        <td><a href="list">Volver</a></td>
+                        <td><a href="list" class="btn btn-primary">Volver</a></td>
                     </tr>      
                 <?php } ?>
             </tbody>
@@ -88,23 +88,5 @@ class ListView {
     }
 
     
-
-    public function showUserLista($tasks) {
-        require 'templates/header.php';
-
-        
-        ?>
-
-        <ul class="list-group">
-        <?php foreach($tasks as $task) { ?>
-        
-             <li><a href="listarId/<?php echo $task->idProducto?>">Ver Producto</a><?php echo "$task->idCodigoProducto| $task->nombreProducto | $task->precio | $task->marca |$task->imagenProducto | $task->idCategoria "?></li>
-                
-        <?php } ?>
-        </ul>
-
-        <?php
-        require 'templates/footer.php';
-    }
 
 }

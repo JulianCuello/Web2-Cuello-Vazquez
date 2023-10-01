@@ -15,19 +15,23 @@ if (!empty( $_GET['action'])) {
 // listar producto/:Id ->        ShowListController->showListById();//solo el producto seleccionado.
 // listar categorias  ->         ShowCategoryController->showCategory();//todas las categorias
 // listar categoria/:Id ->       ShowCategoryController->showCategoryByid();//sola la categoria seleccionada.
-// agregar   ->                  ShowListControler->addItem();//agrega item.
-// eliminar/:ID  ->     taskController->removeTask($id); 
-// finalizar/:ID  ->    taskController->finishTask($id);
+// listar productosAdmin->       ShowListController->showAdminList();//todos los productos + solo los ve el administrador
+// agregar productos ->          ShowListControler->addItem();//agrega item.
+// removeItem/:Id ->             ShowListController->removeItem($id);//elimina item.
+// MostrarFormAlta->             showForm();//formulario para agregar item.
+
 // about ->             aboutController->showAbout();
 
 // parsea la accion para separar accion real de parametros
 $params = explode('/', $action);
 
 switch ($params[0]) {
+    
     case 'list':
         $controller = new ListController();
         $controller->showList();
         break;
+
     case 'listId':
         $controller = new ListController();
         $controller->showListById($params[1]);
@@ -40,20 +44,20 @@ switch ($params[0]) {
         $controller = new CategoryController();
         $controller->showCategoryById($params[1]);
         break;
+    case 'listAdmin':
+        $controller = new ListController();
+        $controller->showAdminList();
+        break;
     case 'form':
         showForm();
         break;
-    case 'add':
+    case 'addItem':
         $controller = new ListController();
         $controller->addItem();
         break;
-    case 'eliminar':
+    case 'removeItem':
         $controller = new ListController();
-        $controller->removeTask($params[1]);
-        break;
-    case 'finalizar':
-        $controller = new ListController();
-        $controller->finishTask($params[1]);
+        $controller->removeItem($params[1]);
         break;
     case 'about':
         $controller = new AboutController();

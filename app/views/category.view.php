@@ -26,7 +26,7 @@
                         <td><?php echo $item->disponible; ?></td>
                         <td><?php echo $item->motor; ?></td>
                         <td><img src="<?php echo $item->imagenCategoria; ?>"class="imagen"></td>
-                        <td><a href="categoryId/<?php echo $item->idCategoria; ?>">Productos relacionados</a></td>
+                        <td><a href="categoryId/<?php echo $item->idCategoria; ?>" class="btn btn-primary">Productos relacionados</a></td>
                     </tr>      
                 <?php } ?>
             </tbody>
@@ -59,8 +59,7 @@
                         <td><?php echo $item->marca; ?></td>
                         <td><?php echo $item->imagenProducto; ?></td>
                         <td><?php echo $item->categoria; ?></td>
-                            
-                        <td><a href="category">Volver</a></td>
+                        <td><a href="category" class="btn btn-primary">Volver</a></td>   
                     </tr>      
                 <?php } ?>
             </tbody>

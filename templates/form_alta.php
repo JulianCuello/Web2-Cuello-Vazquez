@@ -1,36 +1,48 @@
 <!-- formulario de alta de tarea -->
-<?php function showForm(){ ?>
-<form action="add" method="POST" class="my-4">
-    <div class="row">
-        <div class="col-9">
-            <div class="form-group">
-                <label>Producto</label>
-                <input required name="title" type="text" class="form-control">
-            </div>
-        </div>
-
-        <div class="col-3">
-            <div class="form-group">
-                <label>Cantidad</label>
-                
-
-                <select required name="priority" class="form-control">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+<?php function showForm(){ 
+    require_once 'templates/header.php';  ?>
+    <body>
+    <div class="container mt-5">
+        <h2>Carga de Producto</h2>
+        <form action="addItem" method="POST">
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Categoría</label>
+                <select class="form-select" id="categoria" name="idCategoria">
+                    <option value="1">motor</option>
+                    <option value="2">carroceria</option>
+                    <option value="3">suspension</option>
+                    <option value="4">refrigeracion</option>
+                    <option value="5">frenos</option>
+                    <option value="6">iluminacion</option>
+                    <option value="7">interior</option>
                 </select>
             </div>
-        </div>
+            <div class="mb-3">
+                <label for="idCodigoProducto" class="form-label">Código de Producto</label>
+                <input type="text" class="form-control" id="idCodigoProducto" name="idCodigoProducto">
+            </div>
+            <div class="mb-3">
+                <label for="nombreProducto" class="form-label">Nombre de Producto</label>
+                <input type="text" class="form-control" id="nombreProducto" name="nombreProducto">
+            </div>
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" class="form-control" id="precio" name="precio">
+            </div>
+            <div class="mb-3">
+                <label for="marca" class="form-label">Marca</label>
+                <input type="text" class="form-control" id="marca" name="marca">
+            </div>
+            <div class="mb-3">
+                <label for="imagenProducto" class="form-label">URL de la Imagen</label>
+                <input type="text" class="form-control" id="imagenProducto" name="imagenProducto">
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Producto</button>
+        </form>
     </div>
 
-    <div class="form-group">
-        <label>Descripcion</label>
-        <textarea name="description" class="form-control" rows="3"></textarea>
-    </div>
+    <?php
 
-    <button type="submit" class="btn btn-primary mt-2">Guardar</button>
-</form>
+    require_once 'templates/footer.php'; 
 
-<?php }
+ }

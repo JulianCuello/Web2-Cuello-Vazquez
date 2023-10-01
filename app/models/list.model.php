@@ -17,7 +17,7 @@ class ListModel {
         return $list;
     }
 
-    function getUserListById($id) {//consulta por el item segun parametro incluida la categoria
+    function getListById($id) {//consulta por el item segun parametro incluida la categoria
         $query = $this->db->prepare('SELECT * FROM `repuestos` JOIN categoria ON repuestos.idCategoria=categoria.idCategoria WHERE idProducto = ?');
         $query->execute([$id]);
 
@@ -29,16 +29,16 @@ class ListModel {
     /**
      * Inserta la tarea en la base de datos
      */
-    function insertTask($idProducto, $idCodigoProducto, $nombreProducto, $precio, $marca, $idCategoria) {
-        $query = $this->db->prepare('INSERT INTO repuestos (idProducto, idCodigoProducto, nombreProducto, precio, marca, idCategoria) VALUES(?,?,?,?,?,?)');
-        $query->execute([$idProducto, $idCodigoProducto, $nombreProducto, $precio, $marca, $idCategoria]);
+    function insertItem($idCodigoProducto, $nombreProducto, $precio, $marca, $imagenProducto, $idCategoria) {
+        $query = $this->db->prepare('INSERT INTO repuestos (idCodigoProducto, nombreProducto, precio, marca, imagenProducto, idCategoria) VALUES(?,?,?,?,?,?)');
+        $query->execute([$idCodigoProducto, $nombreProducto, $precio, $marca, $imagenProducto, $idCategoria]);
 
         return $this->db->lastInsertId();
     }
 
     
-function deleteTask($id) {
-    $query = $this->db->prepare('DELETE FROM repuestos WHERE id = ?');
+function deleteItem($id) {
+    $query = $this->db->prepare('DELETE FROM repuestos WHERE idProducto = ?');
     $query->execute([$id]);
 }
 
