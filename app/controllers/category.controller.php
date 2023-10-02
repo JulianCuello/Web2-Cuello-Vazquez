@@ -27,4 +27,8 @@
             $categorias=$this->model->getCategoria();
             $this->view->showCategoriesAdmin($categorias);    
        }
-    }
+       public function addCategory(){
+        $categorias=$this->model->getCategoria();
+        $this->view->showCategoriesAdmin($categorias);    
+   }
+}

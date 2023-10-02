@@ -36,7 +36,7 @@
         <a class="nav-link" href="listAdmin">Gestion items</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="form">Agregar categorias</a>
+        <a class="nav-link" href="formCategory">Agregar categorias</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="categoryAdmin">Gestion categorias</a>
