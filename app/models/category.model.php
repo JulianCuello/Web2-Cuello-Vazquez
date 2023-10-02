@@ -18,14 +18,34 @@ class CategoryModel {
             return $categorias;   
     }
 
-    function getItemsCategoriaById($id){
+    function getCategoriaById($id){
         $query = $this->db->prepare('SELECT repuestos.*, categoria.categoria FROM repuestos JOIN categoria ON repuestos.idCategoria = categoria.idCategoria WHERE repuestos.idCategoria=?');
             $query->execute([$id]);
 
             $categoria = $query->fetchAll(PDO::FETCH_OBJ);
 
-
             return $categoria;
     }
 
+     /**
+     * Inserta la tarea en la base de datos
+     */
+    function insertCategory($categoria, $material, $disponible, $motor, $imagenCategoria) {
+        $query = $this->db->prepare('INSERT INTO categoria (categoria, material, disponible, motor, imagenCategoria) VALUES(?,?,?,?,?)');
+        $query->execute([$categoria, $material, $disponible, $motor, $imagenCategoria]);
+
+        return $this->db->lastInsertId();
+    }
+
+function deleteCategory($id) {
+    $query = $this->db->prepare('DELETE FROM categoria WHERE idCategoria = ?');
+    $query->execute([$id]);
 }
+
+function updateItem($categoria, $material, $disponible, $motor, $imagenCategoria) {    
+    $query = $this->db->prepare('UPDATE categoria SET categoria=?,material=?,disponible=?,motor=?,imagenCategoria=? WHERE idCategoria=?');
+    $query->execute([$idCodigoProducto, $nombreProducto, $precio, $marca,$imagenProducto, $idCategoria,$idProducto]);
+    //aca hay que preguntar como devuelvo un id valido.
+}
+}
+

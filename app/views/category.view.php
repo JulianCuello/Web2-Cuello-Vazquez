@@ -91,11 +91,12 @@
                         <td><?php echo $item->material; ?></td>
                         <td><?php echo $item->disponible; ?></td>
                         <td><?php echo $item->motor; ?></td>
+                        
                         <td><img src="<?php echo $item->imagenCategoria; ?>"class="imagen"></td>
 
                         <td><a href="categoryId/<?php echo $item->idCategoria; ?>" class="btn btn-primary">Productos relacionados</a>
-                            <a href="removeItem/<?php echo $item->idCategory; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
-                            <a href="updateItem/<?php echo $item->idCategory; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
+                            <a href="removeItem/<?php echo $item->idCategoria; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
+                            <a href="updateItem/<?php echo $item->idCategoria; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
                         </td>
                     </tr>      
                 <?php } ?>

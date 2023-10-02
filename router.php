@@ -81,7 +81,7 @@ switch ($params[0]) {
         case 'updateCategory':
             showFormUpdate($params[1]);
             break;
-        case 'update':
+        case 'showFormCategoryUpdate':
             $controller= new categoryController();
             $controller->showFormUpdate();
             break;

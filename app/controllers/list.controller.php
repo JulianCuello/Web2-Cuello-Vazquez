@@ -78,10 +78,4 @@ class ListController {
             $this->view->showError("Error al insertar la tarea");
         }*/
     }
-    
-
-
-    
-    
-
 }

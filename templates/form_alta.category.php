@@ -11,35 +11,23 @@
         <form action="addCategory" method="POST">
             <div class="mb-3">
                 <label for="categoria" class="form-label">Categoría</label>
-                <select class="form-select" id="categoria" name="idCategoria">
-                    <option value="1">motor</option>
-                    <option value="2">carroceria</option>
-                    <option value="3">suspension</option>
-                    <option value="4">refrigeracion</option>
-                    <option value="5">frenos</option>
-                    <option value="6">iluminacion</option>
-                    <option value="7">interior</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="ubicacion" class="form-label">Ubicacion</label>
-                <input type="text" class="form-control" id="idCodigoProducto" name="ubicacion">
+                    <input type="text" class="form-control" id="idCategoria" name="categoria">
             </div>
             <div class="mb-3">
                 <label for="material" class="form-label">Material</label>
-                <input type="text" class="form-control" id="nombreProducto" name="Material">
+                <input type="text" class="form-control" id="nombreProducto" name="material">
             </div>
             <div class="mb-3">
                 <label for="disponible" class="form-label">Disponible</label>
                 <input type="number" class="form-control" id="precio" name="disponible">
             </div>
             <div class="mb-3">
-                <label for="motor" class="form-label">Motor/label>
+                <label for="motor" class="form-label">Motor
                 <input type="text" class="form-control" id="motor" name="motor">
             </div>
             <div class="mb-3">
                 <label for="imagenCategoria" class="form-label">Imagen de la categoria</label>
-                <input type="text" class="form-control" id="imagenProducto" name="imagenProducto">
+                <input type="text" class="form-control" id="imagenCategoria" name="imagenCategoria">
             </div>
             <button type="submit" class="btn btn-primary">Guardar categoria</button>
         </form>

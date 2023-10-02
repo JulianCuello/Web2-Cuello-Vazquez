@@ -65,9 +65,9 @@ class AdminView {
                         <td><?php echo $item->imagenCategoria; ?></td>
                        
                         <td>
-                            <a href="listId/<?php echo $item->idCategory; ?>" class="btn btn-primary">Ver Producto</a>
-                            <a href="removeItem/<?php echo $item->idCategory; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
-                            <a href="updateItem/<?php echo $item->idCategory; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
+                            <a href="categoryId/<?php echo $item->idCategory; ?>" class="btn btn-primary">Ver Producto</a>
+                            <a href="removeCategory/<?php echo $item->idCategory; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
+                            <a href="updateCategory/<?php echo $item->idCategory; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
 
                         </td>
                         </tr>      

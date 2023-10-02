@@ -27,8 +27,28 @@
             $categorias=$this->model->getCategoria();
             $this->view->showCategoriesAdmin($categorias);    
        }
-       public function addCategory(){
-        $categorias=$this->model->getCategoria();
-        $this->view->showCategoriesAdmin($categorias);    
-   }
+       function addCategory(){
+        $categoria = $_POST['categoria'];
+        $material = $_POST['material'];
+        $disponible = $_POST['disponible'];
+        $motor= $_POST['motor'];
+        $imagenCategoria=$_POST['imagenCategoria'];
+        
+    
+        if (empty($categoria) || empty($material) || (empty($motor))) {
+            $this->view->showError("Debe completar todos los campos");
+            return;
+        }
+
+        //validaciones
+        $this->model->insertCategory($categoria,$material, $disponible, $motor,$imagenCategoria);
+        header('Location: ' . BASE_URL."categoryAdmin");
+        
+     }
+   
+function removeCategory($id) {
+    $this->model->deleteCategory($id);
+    header('Location: ' . BASE_URL."categoryAdmin");
+}
+
 }
