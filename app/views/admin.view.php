@@ -5,6 +5,7 @@ class AdminView {
     public function showItemList($list) {
         require 'templates/header.php';        
         ?>
+       
         <table class="table">
             <thead>
                 <tr>
@@ -30,6 +31,43 @@ class AdminView {
                             <a href="listId/<?php echo $item->idProducto; ?>" class="btn btn-primary">Ver Producto</a>
                             <a href="removeItem/<?php echo $item->idProducto; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
                             <a href="updateItem/<?php echo $item->idProducto; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
+
+                        </td>
+                        </tr>      
+                <?php } ?>
+            </tbody>
+        </table>
+        <?php
+        require 'templates/footer.php';
+    }
+
+    public function showCategory($categories) {
+        require 'templates/header.php';        
+        ?>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ubicacion</th>
+                    <th>Material</th>
+                    <th>Disponible</th>
+                    <th>Motor</th>
+                    <th>Imagen Categoria</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($categories as $category) { ?>      
+                    <tr>
+                        <td><?php echo $item->ubicacion; ?></td>
+                        <td><?php echo $item->material; ?></td>
+                        <td><?php echo $item->disponible; ?></td>
+                        <td><?php echo $item->motor; ?></td>
+                        <td><?php echo $item->imagenCategoria; ?></td>
+                       
+                        <td>
+                            <a href="listId/<?php echo $item->idCategory; ?>" class="btn btn-primary">Ver Producto</a>
+                            <a href="removeItem/<?php echo $item->idCategory; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
+                            <a href="updateItem/<?php echo $item->idCategory; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
 
                         </td>
                         </tr>      

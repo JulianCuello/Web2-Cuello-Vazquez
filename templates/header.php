@@ -35,6 +35,12 @@
       <li class="nav-item">
         <a class="nav-link" href="listAdmin">Gestion items</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="form">Agregar categorias</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="categoryAdmin">Gestion categorias</a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="category" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           SeleccionarCategoria

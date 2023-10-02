@@ -4,6 +4,8 @@ require_once './app/controllers/about.controller.php';
 require_once './app/controllers/category.controller.php';
 require_once './templates/form_alta.php';
 require_once './templates/form_update.php';
+require_once './templates/form_alta.Category.php';
+require_once './templates/form_update.Category.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -45,29 +47,52 @@ switch ($params[0]) {
         $controller = new CategoryController();
         $controller->showCategoryById($params[1]);
         break;
+        //gestion de items
     case 'listAdmin':
         $controller = new ListController();
         $controller->showAdminList();
         break;
-    case 'form':
-        showForm();
-        break;
-    case 'updateItem':
-        showFormUpdate($params[1]);
-        break;
-    case 'update':
-        $controller= new ListController();
-        $controller->showUpdate();
-        break;
-
-    case 'addItem':
-        $controller = new ListController();
-        $controller->addItem();
-        break;
-    case 'removeItem':
-        $controller = new ListController();
-        $controller->removeItem($params[1]);
-        break;
+        case 'form':
+            showForm();
+            break;
+        case 'updateItem':
+            showFormUpdate($params[1]);
+            break;
+        case 'update':
+            $controller= new ListController();
+            $controller->showUpdate();
+            break;
+        case 'addItem':
+            $controller = new ListController();
+            $controller->addItem();
+            break;
+        case 'removeItem':
+            $controller = new ListController();
+            $controller->removeItem($params[1]);
+            break;
+            //gestion de categorias
+        case 'categoryAdmin':
+            $controller = new categoryController();
+            $controller->showCategoryAdmin();
+            break;
+        case 'formCategory':
+            showFormCategory();
+            break;
+        case 'updateCategory':
+            showFormUpdate($params[1]);
+            break;
+        case 'update':
+            $controller= new categoryController();
+            $controller->showFormUpdate();
+            break;
+        case 'addCategory':
+            $controller = new categoryController();
+            $controller->addCategory();
+            break;
+        case 'removeCategory':
+            $controller = new categoryController();
+            $controller->removeCategory($params[1]);
+            break;
     case 'about':
         $controller = new AboutController();
         $controller->showAbout();

@@ -16,12 +16,15 @@
             $categorias=$this->model->getCategoria();
             $this->view->showCategories($categorias);    
             }
-    
+            
         public function showCategoryById($id){
             $categoria=$this->model->getItemsCategoriaById($id);
             $this->view->showItemscategoriesById($categoria);
         }
 
-
-
+        //vista de administrador
+        public function showCategoryAdmin(){
+            $categorias=$this->model->getCategoria();
+            $this->view->showCategoriesAdmin($categorias);    
+       }
     }
