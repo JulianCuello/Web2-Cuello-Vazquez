@@ -70,6 +70,8 @@ switch ($params[0]) {
             $controller = new ListController();
             $controller->removeItem($params[1]);
             break;
+        
+        
             //gestion de categorias
         case 'categoryAdmin':
             $controller = new categoryController();
@@ -78,17 +80,18 @@ switch ($params[0]) {
         case 'formCategory':
             showFormCategory();
             break;
-        case 'updateCategory':
-            showFormUpdate($params[1]);
-            break;
-        case 'showFormCategoryUpdate':
-            $controller= new categoryController();
-            $controller->showFormUpdate();
-            break;
         case 'addCategory':
             $controller = new categoryController();
             $controller->addCategory();
             break;
+        case 'formCategoryUpdate':
+            showFormCategoryUpdate($params[1]);
+            break;
+        case 'updateCategory':
+            $controller= new categoryController();
+            $controller->showCategoryUpdate();
+            break;
+        
         case 'removeCategory':
             $controller = new categoryController();
             $controller->removeCategory($params[1]);

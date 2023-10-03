@@ -18,7 +18,7 @@ class CategoryModel {
             return $categorias;   
     }
 
-    function getCategoriaById($id){
+    function getItemsCategoriaById($id){
         $query = $this->db->prepare('SELECT repuestos.*, categoria.categoria FROM repuestos JOIN categoria ON repuestos.idCategoria = categoria.idCategoria WHERE repuestos.idCategoria=?');
             $query->execute([$id]);
 
@@ -40,11 +40,12 @@ class CategoryModel {
 function deleteCategory($id) {
     $query = $this->db->prepare('DELETE FROM categoria WHERE idCategoria = ?');
     $query->execute([$id]);
+
 }
 
-function updateItem($categoria, $material, $disponible, $motor, $imagenCategoria) {    
-    $query = $this->db->prepare('UPDATE categoria SET categoria=?,material=?,disponible=?,motor=?,imagenCategoria=? WHERE idCategoria=?');
-    $query->execute([$idCodigoProducto, $nombreProducto, $precio, $marca,$imagenProducto, $idCategoria,$idProducto]);
+function updateItem($idCategoria,$material,$disponible,$motor,$imagenCategoria) {   
+    $query = $this->db->prepare('UPDATE categoria SET material=?,disponible=?,motor=?,imagenCategoria=? WHERE idCategoria=?');
+    $query->execute([$material,$disponible,$motor,$imagenCategoria,$idCategoria]);
     //aca hay que preguntar como devuelvo un id valido.
 }
 }

@@ -11,15 +11,15 @@
         <form action="addCategory" method="POST">
             <div class="mb-3">
                 <label for="categoria" class="form-label">Categoría</label>
-                    <input type="text" class="form-control" id="idCategoria" name="categoria">
+                    <input type="text" class="form-control" id="categoria" name="categoria">
             </div>
             <div class="mb-3">
                 <label for="material" class="form-label">Material</label>
-                <input type="text" class="form-control" id="nombreProducto" name="material">
+                <input type="text" class="form-control" id="material" name="material">
             </div>
             <div class="mb-3">
                 <label for="disponible" class="form-label">Disponible</label>
-                <input type="number" class="form-control" id="precio" name="disponible">
+                <input type="number" class="form-control" id="disponible" name="disponible">
             </div>
             <div class="mb-3">
                 <label for="motor" class="form-label">Motor

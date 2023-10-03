@@ -36,12 +36,18 @@
         
     
         if (empty($categoria) || empty($material) || (empty($motor))) {
-            $this->view->showError("Debe completar todos los campos");
-            return;
+            echo "error";
         }
 
         //validaciones
-        $this->model->insertCategory($categoria,$material, $disponible, $motor,$imagenCategoria);
+        $id=$this->model->insertCategory($categoria,$material, $disponible, $motor,$imagenCategoria);
+        if ($id) {
+            header('Location: '. BASE_URL."listAdmin");
+        } else {
+            echo "mostrar error";
+        }
+        
+        
         header('Location: ' . BASE_URL."categoryAdmin");
         
      }
@@ -49,6 +55,25 @@
 function removeCategory($id) {
     $this->model->deleteCategory($id);
     header('Location: ' . BASE_URL."categoryAdmin");
+}
+
+
+function showCategoryUpdate(){
+        $idCategoria = $_POST['idCategoria'];
+        $material = $_POST['material'];        
+        $disponible= $_POST['disponible'];
+        $motor = $_POST['motor'];
+        $imagenCategoria=$_POST['imagenCategoria'];
+
+        //validaciones
+        $this->model->updateItem($idCategoria,$material,$disponible,$motor,$imagenCategoria);
+        header('Location: ' . BASE_URL."categoryAdmin");
+        /*
+        if ($id) {
+            header('Location: ' . BASE_URL."listAdmin");
+        } else {
+            $this->view->showError("Error al insertar la tarea");
+        }*/
 }
 
 }
