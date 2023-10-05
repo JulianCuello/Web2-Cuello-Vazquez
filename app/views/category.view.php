@@ -58,7 +58,7 @@
                         <td><?php echo $item->nombreProducto; ?></td>
                         <td><?php echo $item->precio; ?></td>
                         <td><?php echo $item->marca; ?></td>
-                        <td><?php echo $item->imagenProducto; ?></td>
+                        <td><img src="<?php echo $item->imagenProducto; ?>"class="imagen"></td>
                         <td><?php echo $item->categoria; ?></td>
                         <td><a href="category" class="btn btn-primary">Volver</a></td>   
                     </tr>      

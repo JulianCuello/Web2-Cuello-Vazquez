@@ -24,7 +24,7 @@ class ListView {
                         <td><?php echo $item->nombreProducto; ?></td>
                         <td><?php echo $item->precio; ?></td>
                         <td><?php echo $item->marca; ?></td>
-                        <td><?php echo $item->imagenProducto; ?></td>
+                        <td><img src="<?php echo $item->imagenProducto; ?>"class="imagen"></td>
                         <td><?php echo $item->categoria; ?></td>
                         <td><a href="listId/<?php echo $item->idProducto; ?>" class="btn btn-primary">Ver Producto</a></td>
                     </tr>      
@@ -61,7 +61,7 @@ class ListView {
                         <td><?php echo $item->nombreProducto; ?></td>
                         <td><?php echo $item->precio; ?></td>
                         <td><?php echo $item->marca; ?></td>
-                        <td><?php echo $item->imagenProducto; ?></td>
+                        <td><img src="<?php echo $item->imagenProducto; ?>"class="imagen"></td>
                         <td><?php echo $item->categoria; ?></td>
                         <td><?php echo $item->material; ?></td>
                         <td><?php echo $item->disponible; ?></td>
