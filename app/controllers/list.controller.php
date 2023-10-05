@@ -7,18 +7,18 @@ require_once './app/views/admin.view.php';
 class ListController {
     private $model;
     private $view;
-    private $viewAdmin;
+    private $viewAdmin;//esta bien la vista del administrador?
 
     public function __construct() {
         $this->model = new ListModel();
         $this->view = new ListView();
         $this->viewAdmin = new AdminView();
-    }
+    }//IMPORTANTE, SON EL MISMO METODO PERO SE HIZO DISTINTO PARA PODER DIFERENCIAR la vista del usuario a la del administ
     public function showAdminList(){
         $list=$this->model->getList();
         $this->viewAdmin->showItemList($list);
     }
-
+    //por eso aca hay uno repetido pero que la vista es distinta, (con los botones de gestion de items)
     public function showList() {//toda la lista
         $list = $this->model->getList();   
         $this->view->showItemList($list);
@@ -56,7 +56,7 @@ class ListController {
 
     function removeItem($id) {
         $this->model->deleteItem($id);
-        header('Location: ' . BASE_URL."listAdmin");
+        header('Location: ' . BASE_URL."listAdmin");//ACA!!!
     }
 
     function showUpdate(){
@@ -68,7 +68,7 @@ class ListController {
         $imagenProducto=$_POST['imagenProducto'];
         $idCategoria= $_POST['idCategoria'];
 
-        //validaciones
+        //validaciones//ACA!! el id que devuelve siempre es 0, porque lo hace?
         $this->model->updateItem($idProducto,$idCodigoProducto, $nombreProducto, $precio, $marca,$imagenProducto, $idCategoria);
         header('Location: ' . BASE_URL."listAdmin");
         /*
@@ -77,5 +77,6 @@ class ListController {
         } else {
             $this->view->showError("Error al insertar la tarea");
         }*/
+
     }
 }
