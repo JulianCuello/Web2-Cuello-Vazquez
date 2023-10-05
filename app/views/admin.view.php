@@ -3,7 +3,7 @@
 class AdminView {
 
     public function showItemList($list) {
-        require 'templates/header.php';        
+        require 'templates/header.phtml';        
         ?>
        
         <table class="table">
@@ -38,11 +38,11 @@ class AdminView {
             </tbody>
         </table>
         <?php
-        require 'templates/footer.php';
+        require './templates/footer.phtml';
     }
 
     public function showCategory($categories) {
-        require 'templates/header.php';        
+        require './templates/header.phtml';        
         ?>
         <table class="table">
             <thead>
@@ -75,7 +75,7 @@ class AdminView {
             </tbody>
         </table>
         <?php
-        require 'templates/footer.php';
+        require './templates/footer.phtml';
     }
 
 }

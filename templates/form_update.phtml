@@ -1,10 +1,10 @@
-<!-- formulario de alta de tarea -->
-<?php function showForm(){ 
-    require_once 'templates/header.php';  ?>
+<?php function showFormUpdate($idProducto){
+    
+    require_once 'templates/header.phtml';  ?>
     <body>
     <div class="container mt-5">
-        <h2>Carga de Producto</h2>
-        <form action="addItem" method="POST">
+        <h2>Modificacion de Producto</h2>
+        <form action="update" method="POST">
             <div class="mb-3">
                 <label for="categoria" class="form-label">Categoría</label>
                 <select class="form-select" id="categoria" name="idCategoria">
@@ -16,6 +16,10 @@
                     <option value="6">iluminacion</option>
                     <option value="7">interior</option>
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="idProducto" class="form-label">ID Producto</label>
+                <input type="text" class="form-control" id="idProducto" name="idProducto" value="<?php echo $idProducto?>">
             </div>
             <div class="mb-3">
                 <label for="idCodigoProducto" class="form-label">Código de Producto</label>
@@ -37,12 +41,12 @@
                 <label for="imagenProducto" class="form-label">URL de la Imagen</label>
                 <input type="text" class="form-control" id="imagenProducto" name="imagenProducto">
             </div>
-            <button type="submit" class="btn btn-primary">Guardar Producto</button>
+            <button type="submit" class="btn btn-primary">Modificar</button>
         </form>
     </div>
 
     <?php
 
-    require_once 'templates/footer.php'; 
+    require_once 'templates/footer.phtml'; 
 
  }

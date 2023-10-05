@@ -3,7 +3,7 @@
 class ListView {
 
     public function showItemList($list) {
-        require 'templates/header.php';        
+        require 'templates/header.phtml';        
         ?>
         <table class="table">
             <thead>
@@ -32,11 +32,11 @@ class ListView {
             </tbody>
         </table>
         <?php
-        require 'templates/footer.php';
+        require './templates/footer.phtml';
     }
     
     public function showItemListById($list) {
-        require 'templates/header.php';        
+        require './templates/header.phtml';        
         ?>
         <table class="table">
             <thead>
@@ -73,18 +73,18 @@ class ListView {
             </tbody>
         </table>
         <?php
-        require 'templates/footer.php';
+        require './templates/footer.phtml';
     }
 
     public function showError($error) {
-        require 'templates/header.php';
+        require './templates/header.phtml';
         
         echo "
             <div class='alert alert-danger' role='alert'>
                 $error
             </div> 
         ";
-        require 'templates/footer.php';
+        require './templates/footer.phtml';
     }
 
     

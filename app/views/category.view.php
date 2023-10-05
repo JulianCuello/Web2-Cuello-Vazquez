@@ -4,7 +4,7 @@
 
 
     function showCategories($categorias){
-        require 'templates/header.php';
+        require 'templates/header.phtml';
 
         ?>
         <table class="table">
@@ -32,11 +32,11 @@
             </tbody>
         </table>
         <?php
-        require 'templates/footer.php';
+        require './templates/footer.phtml';
     }
 
     function showItemsCategoriesById($categorias){
-        require 'templates/header.php';
+        require './templates/header.phtml';
 
         ?>
         <table class="table">
@@ -66,11 +66,11 @@
             </tbody>
         </table>
         <?php
-        require 'templates/footer.php';
+        require './templates/footer.phtml';
     }
         // gestion categorias
     function showCategoriesAdmin ($categorias){
-        require 'templates/header.php';
+        require './templates/header.phtml';
 
         ?>
         <table class="table">
@@ -103,6 +103,6 @@
             </tbody>
         </table>
         <?php
-        require 'templates/footer.php';
+        require './templates/footer.phtml';
     }
  }

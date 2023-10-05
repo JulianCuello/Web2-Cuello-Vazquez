@@ -6,7 +6,7 @@ class TaskView {
     
     public function showUserList($tasks) {
         
-        require 'templates/header.php';
+        require './templates/header.phtml';
         ?>
 
         <ul class="list-group">
@@ -24,17 +24,17 @@ class TaskView {
         </ul>
 
         <?php
-        require 'templates/footer.php';
+        require './templates/footer.phtml';
     }
 
     public function showError($error) {
-        require 'templates/header.php';
+        require './templates/header.phtml';
         
         echo "
             <div class='alert alert-danger' role='alert'>
                 $error
             </div> 
         ";
-        require 'templates/footer.php';
+        require './templates/footer.phtml';
     }
 }
