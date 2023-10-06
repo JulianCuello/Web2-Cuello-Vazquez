@@ -1,6 +1,5 @@
-
 <?php
-require 'templates/header.phtml';   
+require './templates/header.phtml';
 ?>
         <table class="table">
             <thead>
@@ -15,7 +14,7 @@ require 'templates/header.phtml';
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($list as $item) { ?>      
+                <?php foreach($categorias as $item) { ?>      
                     <tr>
                         <td><?php echo $item->idCodigoProducto; ?></td>
                         <td><?php echo $item->nombreProducto; ?></td>
@@ -23,16 +22,10 @@ require 'templates/header.phtml';
                         <td><?php echo $item->marca; ?></td>
                         <td><img src="<?php echo $item->imagenProducto; ?>"class="imagen"></td>
                         <td><?php echo $item->categoria; ?></td>
-                        <td>
-                            <a href="listId/<?php echo $item->idProducto; ?>" class="btn btn-primary">Ver Producto</a>
-                            <a href="removeItem/<?php echo $item->idProducto; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
-                            <a href="updateItem/<?php echo $item->idProducto; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
-
-                        </td>
-                        </tr>      
+                        <td><a href="category" class="btn btn-primary">Volver</a></td>   
+                    </tr>      
                 <?php } ?>
             </tbody>
         </table>
         <?php
         require './templates/footer.phtml';
-    

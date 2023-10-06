@@ -3,10 +3,13 @@
 class AdminView {
 
     public function showItemList($list) {
-        require('./templates/table.items.phtml');
+        require('./templates/admin/admin.table.items.phtml');
     }
 
     public function showCategory($categories) {
-        
+        require('./templates/admin/admin.table.category.phtml');
+    }
+    function showCategoriesAdmin ($categories){
+        require './templates/admin/admin.table.category.phtml';
     }
 }

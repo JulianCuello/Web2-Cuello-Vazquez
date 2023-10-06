@@ -1,15 +1,19 @@
 <?php
     require_once './app/views/category.view.php';
     require_once './app/models/category.model.php';
+    require_once './app/views/admin.view.php';
 
     class CategoryController{
         
         private $model;
         private $view;
+        private $adminView;
 
         public function __construct(){
             $this->model=new CategoryModel();
             $this->view=new CategoryView();
+            $this->adminView=new AdminView();
+
         }
 
         public function showCategory(){
@@ -25,7 +29,7 @@
         //vista de administrador
         public function showCategoryAdmin(){
             $categorias=$this->model->getCategoria();
-            $this->view->showCategoriesAdmin($categorias);    
+            $this->adminView->showCategoriesAdmin($categorias);    
        }
        function addCategory(){
         $categoria = $_POST['categoria'];

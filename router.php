@@ -2,10 +2,10 @@
 require_once './app/controllers/list.controller.php';
 require_once './app/controllers/about.controller.php';
 require_once './app/controllers/category.controller.php';
-require_once './templates/form_alta.phtml';
-require_once './templates/form_update.phtml';
-require_once './templates/form_alta.Category.phtml';
-require_once './templates/form_update.Category.phtml';
+require_once './templates/forms/form_alta.phtml';
+require_once './templates/forms/form_update.phtml';
+require_once './templates/forms/form_alta.Category.phtml';
+require_once './templates/forms/form_update.Category.phtml';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
