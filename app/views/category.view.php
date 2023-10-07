@@ -14,7 +14,9 @@
        /* function showCategoriesAdmin ($categories){
             require './templates/admin/admin.table.category.phtml';
         }*/
-    
+    function formCategory(){
+        require './templates/forms/form_alta.category.phtml';
+    }
  }
 
  

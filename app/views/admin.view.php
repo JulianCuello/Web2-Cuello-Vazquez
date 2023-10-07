@@ -12,4 +12,8 @@ class AdminView {
     function showCategoriesAdmin ($categories){
         require './templates/admin/admin.table.category.phtml';
     }
+
+    function showForm(){
+        require './templates/forms/form_alta.phtml';
+    }
 }

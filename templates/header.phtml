@@ -40,18 +40,16 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="categoryAdmin">Gestion categorias</a>
+      <?php if (!isset($_SESSION['USER_ID'])) : //si no esta logueado va a mostrarse login?>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="login">Login</a>
+          </li>
+      <?php else : ?>
+      <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="logout">Logout (<?= $_SESSION['USER_EMAIL'] ?>)</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="category" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          SeleccionarCategoria
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="categoryId/1">Motor</a>
-          <a class="dropdown-item" href="#">Chevrolet</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Renault</a>
-        </div>
-      </li>
+      <?php endif ?>
+
     </ul>
 
   </div>

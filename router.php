@@ -2,10 +2,10 @@
 require_once './app/controllers/list.controller.php';
 require_once './app/controllers/about.controller.php';
 require_once './app/controllers/category.controller.php';
-require_once './templates/forms/form_alta.phtml';
+require_once './app/controllers/auth.controller.php';
 require_once './templates/forms/form_update.phtml';
-require_once './templates/forms/form_alta.Category.phtml';
 require_once './templates/forms/form_update.Category.phtml';
+
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -22,6 +22,10 @@ if (!empty( $_GET['action'])) {
 // agregar productos ->          ShowListControler->addItem();//agrega item.
 // removeItem/:Id ->             ShowListController->removeItem($id);//elimina item.
 // MostrarFormAlta->             showForm();//formulario para agregar item.
+// login ->                      authContoller->showLogin();
+// logout ->                     authContoller->logout();
+// auth                          authContoller->auth(); // toma los datos del post y autentica al usuario
+
 
 // about ->             aboutController->showAbout();
 
@@ -34,6 +38,21 @@ switch ($params[0]) {
         $controller = new ListController();
         $controller->showList();
         break;
+    
+    
+    case 'login':
+        $controller = new AuthController();
+        $controller->showLogin(); 
+        break;
+    case 'logout':
+        $controller = new AuthController();
+        $controller->logout();
+        break;    
+    case 'auth':
+        $controller = new AuthController();
+        $controller->auth();
+        break;   
+    
 
     case 'listId':
         $controller = new ListController();
@@ -53,7 +72,8 @@ switch ($params[0]) {
         $controller->showAdminList();
         break;
         case 'form':
-            showForm();
+            $controller = new ListController();
+            $controller->showFormAlta();
             break;
         case 'updateItem':
             showFormUpdate($params[1]);
@@ -78,16 +98,17 @@ switch ($params[0]) {
             $controller->showCategoryAdmin();
             break;
         case 'formCategory':
-            showFormCategory();
+            $controller = new categoryController();
+            $controller->showFormCategory();
             break;
         case 'addCategory':
             $controller = new categoryController();
             $controller->addCategory();
             break;
-        case 'formCategoryUpdate':
+        case 'updateCategory':
             showFormCategoryUpdate($params[1]);
             break;
-        case 'updateCategory':
+        case 'updateCat':
             $controller= new categoryController();
             $controller->showCategoryUpdate();
             break;

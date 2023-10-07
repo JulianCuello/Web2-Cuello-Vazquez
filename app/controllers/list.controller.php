@@ -2,6 +2,8 @@
 require_once './app/models/list.model.php';
 require_once './app/views/list.view.php';
 require_once './app/views/admin.view.php';
+require_once './helpers/auth.helper.php';
+
   
 
 class ListController {
@@ -15,11 +17,13 @@ class ListController {
         $this->viewAdmin = new AdminView();
     }//IMPORTANTE, SON EL MISMO METODO PERO SE HIZO DISTINTO PARA PODER DIFERENCIAR la vista del usuario a la del administ
     public function showAdminList(){
+        //AuthHelper::verify();
         $list=$this->model->getList();
         $this->viewAdmin->showItemList($list);
     }
     //por eso aca hay uno repetido pero que la vista es distinta, (con los botones de gestion de items)
     public function showList() {//toda la lista
+        //AuthHelper::verify();
         $list = $this->model->getList();   
         $this->view->showItemList($list);
     }
@@ -27,6 +31,10 @@ class ListController {
     public function showListById($id) {//solo el item con el id del parametro
         $item = $this->model->getListById($id);
         $this->view->showItemListbyId($item);
+    }
+
+    public function showFormAlta(){
+        $this->viewAdmin->showForm();
     }
 
     public function addItem() {

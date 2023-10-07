@@ -1,5 +1,6 @@
 <?php
 
+
 class ListView {
 
     public function showItemList($list) {
@@ -11,3 +12,10 @@ class ListView {
         
     }
 }
+
+
+
+
+   // $clave='admin';
+   // echo password_hash($clave,PASSWORD_BCRYPT);
+    

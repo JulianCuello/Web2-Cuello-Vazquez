@@ -21,12 +21,10 @@ require './templates/header.phtml';
                         <td><?php echo $item->disponible; ?></td>
                         <td><?php echo $item->motor; ?></td>
                         <td><img src="<?php echo $item->imagenProducto; ?>"class="imagen"></td>
-                       
                         <td>
-                            <a href="categoryId/<?php echo $item->idCategory; ?>" class="btn btn-primary">Ver Producto</a>
-                            <a href="removeCategory/<?php echo $item->idCategory; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
-                            <a href="updateCategory/<?php echo $item->idCategory; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
-
+                            <a href="categoryId/<?php echo $item->idCategoria; ?>" class="btn btn-primary">Ver Productos</a>
+                            <a href="removeCategory/<?php echo $item->idCategoria; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
+                            <a href="updateCategory/<?php echo $item->idCategoria; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
                         </td>
                         </tr>      
                 <?php } ?>

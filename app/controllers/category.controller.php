@@ -17,20 +17,29 @@
         }
 
         public function showCategory(){
+            
             $categorias=$this->model->getCategoria();
             $this->view->showCategories($categorias);    
             }
             
         public function showCategoryById($id){
+            
             $categoria=$this->model->getItemsCategoriaById($id);
             $this->view->showItemscategoriesById($categoria);
         }
 
         //vista de administrador
         public function showCategoryAdmin(){
+            //AuthHelper::verify();
             $categorias=$this->model->getCategoria();
             $this->adminView->showCategoriesAdmin($categorias);    
        }
+
+       public function showFormCategory(){
+            $this->view->formCategory();
+       }
+
+
        function addCategory(){
         $categoria = $_POST['categoria'];
         $material = $_POST['material'];
