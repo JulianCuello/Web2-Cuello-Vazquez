@@ -1,10 +1,10 @@
-<?php function showFormUpdate($idProducto){
-    
+<?php
+
     require_once 'templates/header.phtml';  ?>
     <body>
     <div class="container mt-5">
         <h2>Modificacion de Producto</h2>
-        <form action="update" method="POST">
+        <form action="updateItem" method="POST">
             <div class="mb-3">
                 <label for="categoria" class="form-label">Categoría</label>
                 <select class="form-select" id="categoria" name="idCategoria">
@@ -19,7 +19,7 @@
             </div>
             <div class="mb-3">
                 <label for="idProducto" class="form-label">ID Producto</label>
-                <input type="text" class="form-control" id="idProducto" name="idProducto" value="<?php echo $idProducto?>">
+                <input type="text" class="form-control" id="idProducto" name="idProducto" value="<?php echo $list?>">
             </div>
             <div class="mb-3">
                 <label for="idCodigoProducto" class="form-label">Código de Producto</label>
@@ -49,4 +49,3 @@
 
     require_once 'templates/footer.phtml'; 
 
- }

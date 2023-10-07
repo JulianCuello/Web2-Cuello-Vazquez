@@ -23,12 +23,15 @@ require './templates/header.phtml';
                         <td><?php echo $item->marca; ?></td>
                         <td><img src="<?php echo $item->imagenProducto; ?>"class="imagen"></td>
                         <td><?php echo $item->categoria; ?></td>
-                        <td>
-                                
-                            <a href="listId/<?php echo $item->idProducto; ?>" class="btn btn-primary">Ver Producto</a>
+                        <td>        
+                            
+                            <?php if (isset($_SESSION['USER_ID'])){?> 
+                            <a href="listAdminId/<?php echo $item->idProducto; ?>" class="btn btn-primary">Ver Producto</a>
                             <a href="removeItem/<?php echo $item->idProducto; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
-                            <a href="updateItem/<?php echo $item->idProducto; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
-                        
+                            <a href="updateItemForm/<?php echo $item->idProducto; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
+                            <?php }else{ ?>
+                                <a href="listId/<?php echo $item->idProducto; ?>" class="btn btn-primary">Ver Producto</a>
+                            <?php } ?>    
                         </td>
                         </tr>      
                 <?php } ?>

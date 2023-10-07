@@ -16,7 +16,7 @@ require './templates/header.phtml';
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($list as $item) { ?>      
+                <?php foreach ($list as $item) { ?>      
                     <tr>
                         <td><?php echo $item->idCodigoProducto; ?></td>
                         <td><?php echo $item->nombreProducto; ?></td>
@@ -24,7 +24,12 @@ require './templates/header.phtml';
                         <td><?php echo $item->marca; ?></td>
                         <td><img src="<?php echo $item->imagenProducto; ?>"class="imagen"></td>
                         <td><?php echo $item->categoria; ?></td>
-                        <td><a href="list/<?php echo $item->idProducto; ?>" class="btn btn-primary">Volver</a></td>
+                        <?php if (!isset($_SESSION['USER_ID'])){?> 
+                              <td><a href="list" class="btn btn-primary">Volver</a></td>
+                        <?php }
+                              else{?> 
+                                  <td><a href="listAdmin" class="btn btn-primary">Volver</a></td>
+                       <?php  } ?>    
                     </tr>      
                 <?php } ?>
             </tbody>

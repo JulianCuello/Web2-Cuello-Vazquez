@@ -3,14 +3,20 @@
 
 class ListView {
 
-    public function showItemList($list) {
-        require 'templates/show/show.list.phtml';        
+    public function renderList($list) {//check
+        require('./templates/admin/admin.table.items.phtml');        
     }
     
-    public function showItemListById($list) {
+    public function renderItemListById($list) {
         require './templates/show/showListItemById.phtml';        
         
     }
+
+    public function renderFormUpdate($list) {
+        require './templates/forms/form_update.phtml';        
+        
+    }
+
 }
 
 

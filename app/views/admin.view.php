@@ -2,9 +2,9 @@
 
 class AdminView {
 
-    public function showItemList($list) {
-        require('./templates/admin/admin.table.items.phtml');
-    }
+    //public function showItemList($list) {//este se iria...
+    //    require('./templates/admin/admin.table.items.phtml');
+    //}
 
     public function showCategory($categories) {
         require('./templates/admin/admin.table.category.phtml');
