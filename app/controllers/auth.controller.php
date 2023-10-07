@@ -33,7 +33,7 @@ class AuthController {
             
             AuthHelper::login($user);
             
-            header('Location: ' . BASE_URL);
+            header('Location: ' . BASE_URL."listAdmin");
         } else {
             $this->view->showLogin('Usuario inválido'); //lo mando de nuevo al login con el mensaje de error
         }

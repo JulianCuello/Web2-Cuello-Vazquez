@@ -30,17 +30,19 @@
 
         //vista de administrador
         public function showCategoryAdmin(){
-            //AuthHelper::verify();
+            AuthHelper::verify();
             $categorias=$this->model->getCategoria();
             $this->adminView->showCategoriesAdmin($categorias);    
        }
 
        public function showFormCategory(){
-            $this->view->formCategory();
+        AuthHelper::verify(); 
+        $this->view->formCategory();
        }
 
 
        function addCategory(){
+        AuthHelper::verify();
         $categoria = $_POST['categoria'];
         $material = $_POST['material'];
         $origen = $_POST['origen'];

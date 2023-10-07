@@ -23,10 +23,12 @@ require './templates/header.phtml';
                         <td><?php echo $item->marca; ?></td>
                         <td><img src="<?php echo $item->imagenProducto; ?>"class="imagen"></td>
                         <td><?php echo $item->categoria; ?></td>
-                        <td>         
+                        <td>
+                                
                             <a href="listId/<?php echo $item->idProducto; ?>" class="btn btn-primary">Ver Producto</a>
                             <a href="removeItem/<?php echo $item->idProducto; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
                             <a href="updateItem/<?php echo $item->idProducto; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
+                        
                         </td>
                         </tr>      
                 <?php } ?>

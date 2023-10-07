@@ -7,6 +7,7 @@ require_once './helpers/auth.helper.php';
   
 
 class ListController {
+    
     private $model;
     private $view;
     private $viewAdmin;//esta bien la vista del administrador?
@@ -17,7 +18,7 @@ class ListController {
         $this->viewAdmin = new AdminView();
     }//IMPORTANTE, SON EL MISMO METODO PERO SE HIZO DISTINTO PARA PODER DIFERENCIAR la vista del usuario a la del administ
     public function showAdminList(){
-        //AuthHelper::verify();
+        AuthHelper::verify();
         $list=$this->model->getList();
         $this->viewAdmin->showItemList($list);
     }

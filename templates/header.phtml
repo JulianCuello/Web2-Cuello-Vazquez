@@ -23,32 +23,34 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="list">Listado <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="category">Categorias</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="form">Agregar items</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="listAdmin">Gestion items</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="formCategory">Agregar categorias</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="categoryAdmin">Gestion categorias</a>
-      <?php if (!isset($_SESSION['USER_ID'])) : //si no esta logueado va a mostrarse login?>
+    <?php if (!isset($_SESSION['USER_ID'])) : //si no esta logueado va a mostrarse login?>
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="login">Login</a>
           </li>
-      <?php else : ?>
-      <li class="nav-item">
+          <li class="nav-item active">
+          <a class="nav-link" href="list">Listado <span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link" href="category">Categorias</a>
+          </li>
+          <?php else : ?>
+          <li class="nav-item">
           <a class="nav-link" aria-current="page" href="logout">Logout (<?= $_SESSION['USER_EMAIL'] ?>)</a>
-      </li>
-      <?php endif ?>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="form">Agregar items</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="listAdmin">Gestion items</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="formCategory">Agregar categorias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categoryAdmin">Gestion categorias</a>
+          </li>
+          <?php endif ?>
+          
 
     </ul>
 
