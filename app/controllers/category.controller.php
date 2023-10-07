@@ -43,7 +43,7 @@
        function addCategory(){
         $categoria = $_POST['categoria'];
         $material = $_POST['material'];
-        $disponible = $_POST['disponible'];
+        $origen = $_POST['origen'];
         $motor= $_POST['motor'];
         $imagenCategoria=$_POST['imagenCategoria'];
         
@@ -53,7 +53,7 @@
         }
 
         //validaciones
-        $id=$this->model->insertCategory($categoria,$material, $disponible, $motor,$imagenCategoria);
+        $id=$this->model->insertCategory($categoria,$material, $origen, $motor,$imagenCategoria);
         if ($id) {
             header('Location: '. BASE_URL."listAdmin");
         } else {
@@ -74,12 +74,12 @@ function removeCategory($id) {
 function showCategoryUpdate(){
         $idCategoria = $_POST['idCategoria'];
         $material = $_POST['material'];        
-        $disponible= $_POST['disponible'];
+        $origen= $_POST['origen'];
         $motor = $_POST['motor'];
         $imagenCategoria=$_POST['imagenCategoria'];
 
         //validaciones
-        $this->model->updateItem($idCategoria,$material,$disponible,$motor,$imagenCategoria);
+        $this->model->updateItem($idCategoria,$material,$origen,$motor,$imagenCategoria);
         header('Location: ' . BASE_URL."categoryAdmin");
         /*
         if ($id) {

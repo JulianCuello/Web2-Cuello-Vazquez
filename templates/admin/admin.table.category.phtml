@@ -7,7 +7,7 @@ require './templates/header.phtml';
                 <tr>
                     <th>Categoria</th>
                     <th>Material</th>
-                    <th>Disponible</th>
+                    <th>origen</th>
                     <th>Motor</th>
                     <th>Imagen Categoria</th>
                     <th>Acciones</th>
@@ -18,7 +18,7 @@ require './templates/header.phtml';
                     <tr>
                         <td><?php echo $item->categoria; ?></td>
                         <td><?php echo $item->material; ?></td>
-                        <td><?php echo $item->disponible; ?></td>
+                        <td><?php echo $item->origen; ?></td>
                         <td><?php echo $item->motor; ?></td>
                         <td><img src="<?php echo $item->imagenProducto; ?>"class="imagen"></td>
                         <td>

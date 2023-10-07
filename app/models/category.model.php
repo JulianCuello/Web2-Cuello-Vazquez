@@ -30,9 +30,9 @@ class CategoryModel {
      /**
      * Inserta la tarea en la base de datos
      */
-    function insertCategory($categoria, $material, $disponible, $motor, $imagenCategoria) {
-        $query = $this->db->prepare('INSERT INTO categoria (categoria, material, disponible, motor, imagenCategoria) VALUES(?,?,?,?,?)');
-        $query->execute([$categoria, $material, $disponible, $motor, $imagenCategoria]);
+    function insertCategory($categoria, $material, $origen, $motor, $imagenCategoria) {
+        $query = $this->db->prepare('INSERT INTO categoria (categoria, material, origen, motor, imagenCategoria) VALUES(?,?,?,?,?)');
+        $query->execute([$categoria, $material, $origen, $motor, $imagenCategoria]);
 
         return $this->db->lastInsertId();
     }
@@ -43,9 +43,9 @@ function deleteCategory($id) {
 
 }
 
-function updateItem($idCategoria,$material,$disponible,$motor,$imagenCategoria) {   
-    $query = $this->db->prepare('UPDATE categoria SET material=?,disponible=?,motor=?,imagenCategoria=? WHERE idCategoria=?');
-    $query->execute([$material,$disponible,$motor,$imagenCategoria,$idCategoria]);
+function updateItem($idCategoria,$material,$origen,$motor,$imagenCategoria) {   
+    $query = $this->db->prepare('UPDATE categoria SET material=?,origen=?,motor=?,imagenCategoria=? WHERE idCategoria=?');
+    $query->execute([$material,$origen,$motor,$imagenCategoria,$idCategoria]);
     //aca hay que preguntar como devuelvo un id valido.
 }
 }
