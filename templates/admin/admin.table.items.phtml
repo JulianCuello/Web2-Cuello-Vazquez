@@ -1,44 +1,39 @@
-
 <?php
-require './templates/header.phtml';   
+require './templates/header.phtml';
 ?>
-    <div class="mt-1 w-100 mx-auto" style="height: 300px;">
-        <table class="table">
-            <thead>
+<div class="mt-1 w-100 mx-auto" style="height: 300px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Código Producto</th>
+                <th>Nombre Producto</th>
+                <th>Precio</th>
+                <th>Marca</th>
+                <th>Imagen Producto</th>
+                <th>Categoria</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($list as $item) { ?>
                 <tr>
-                    <th>Código Producto</th>
-                    <th>Nombre Producto</th>
-                    <th>Precio</th>
-                    <th>Marca</th>
-                    <th>Imagen Producto</th>
-                    <th>Categoria</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($list as $item) { ?>      
-                    <tr>
-                        <td><?php echo $item->idCodigoProducto; ?></td>
-                        <td><?php echo $item->nombreProducto; ?></td>
-                        <td><?php echo $item->precio; ?></td>
-                        <td><?php echo $item->marca; ?></td>
-                        <td><img src="<?php echo $item->imagenProducto; ?>"class="imagen"></td>
-                        <td><?php echo $item->categoria; ?></td>
-                        <td>        
-                            
-                            <?php if (isset($_SESSION['USER_ID'])){?> 
-                            <a href="listAdminId/<?php echo $item->idProducto; ?>" class="btn btn-primary">Ver Producto</a>
+                    <td><?php echo $item->idCodigoProducto; ?></td>
+                    <td><?php echo $item->nombreProducto; ?></td>
+                    <td><?php echo $item->precio; ?></td>
+                    <td><?php echo $item->marca; ?></td>
+                    <td><img src="<?php echo $item->imagenProducto; ?>" class="imagen"></td>
+                    <td><?php echo $item->categoria; ?></td>
+                    <td>
+                        <a href="<?php echo "$path/$item->idProducto"; ?>" class="btn btn-primary">Ver Producto</a>
+                        <?php if (isset($_SESSION['USER_ID'])) { ?>
                             <a href="removeItem/<?php echo $item->idProducto; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
                             <a href="updateItemForm/<?php echo $item->idProducto; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
-                            <?php }else{ ?>
-                                <a href="listId/<?php echo $item->idProducto; ?>" class="btn btn-primary">Ver Producto</a>
-                            <?php } ?>    
-                        </td>
-                        </tr>      
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
-        <?php
-        require './templates/footer.phtml';
-    
+                        <?php } ?>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
+<?php
+require './templates/footer.phtml';

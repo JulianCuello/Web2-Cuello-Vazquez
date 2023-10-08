@@ -19,24 +19,28 @@ class ListController {
     }//IMPORTANTE, SON EL MISMO METODO PERO SE HIZO DISTINTO PARA PODER DIFERENCIAR la vista del usuario a la del administ
    
     public function showList() {//vista de usuario publico
-        $list = $this->model->getList();   
-        $this->view->renderList($list);
+        $list = $this->model->getList();
+        $path = 'listId';
+        $this->view->renderList($list,$path);
     }
     public function showAdminList(){//vista de administrador
         AuthHelper::verify();
         $list=$this->model->getList();
-        $this->view->renderList($list);
+        $path = 'listAdminId';
+        $this->view->renderList($list, $path);
     }
 
     public function showListById($id) {//item con el id del parametro (usuario publico) 
         $item = $this->model->getListById($id);
-        $this->view->renderItemListbyId($item);
+        $path= "list";
+        $this->view->renderItemListbyId($item,$path);
     }
 
     public function showAdminListById($id) {//item con el id del parametro (acceso solo aministrador)
         AuthHelper::verify();
+        $path= "listAdmin";
         $item = $this->model->getListById($id);
-        $this->view->renderItemListbyId($item);
+        $this->view->renderItemListbyId($item,$path);
     }
 
     public function removeItem($id) {//elimina item (acceso solo administrador)
@@ -47,7 +51,8 @@ class ListController {
 
     public function showFormUpdate($id){//muestra formulario modificacion item (acceso solo administrador)
         AuthHelper::verify();
-        $this->view->renderFormUpdate($id);
+        $idCategory=$this->model->getIdCategory();
+        $this->view->renderFormUpdate($id, $idCategory);
     }
 
     public function showUpdate(){//hasta aca llegue
@@ -99,6 +104,9 @@ class ListController {
         } else {
             $this->view->showError("Error al insertar la tarea");
         }
+
+
+
     }
 
    

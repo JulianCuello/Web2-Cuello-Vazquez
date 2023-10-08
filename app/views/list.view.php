@@ -3,16 +3,16 @@
 
 class ListView {
 
-    public function renderList($list) {//check
+    public function renderList($list,$path) {//check
         require('./templates/admin/admin.table.items.phtml');        
     }
     
-    public function renderItemListById($list) {
+    public function renderItemListById($list,$path) {
         require './templates/show/showListItemById.phtml';        
         
     }
 
-    public function renderFormUpdate($list) {
+    public function renderFormUpdate($list, $category) {
         require './templates/forms/form_update.phtml';        
         
     }

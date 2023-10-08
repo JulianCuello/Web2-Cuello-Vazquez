@@ -30,6 +30,14 @@ class ListModel
         return $item;
     }
 
+    function getIdCategory()
+    { //consulta por la lista, incluida la categoria a la que corresponden
+        $query = $this->db->prepare('SELECT categoria.idCategoria,categoria.categoria FROM categoria;');
+        $query->execute();
+        $category = $query->fetchAll(PDO::FETCH_OBJ);
+        return $category;
+    }
+
     
     function deleteItem($id)
     {

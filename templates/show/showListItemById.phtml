@@ -1,38 +1,33 @@
 <?php
 require './templates/header.phtml';
- 
+
 ?>
 
 <table class="table">
-            <thead>
-                <tr>
-                    <th>Código Producto</th>
-                    <th>Nombre Producto</th>
-                    <th>Precio</th>
-                    <th>Marca</th>
-                    <th>Imagen Producto</th>
-                    <th>Categoria</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($list as $item) { ?>      
-                    <tr>
-                        <td><?php echo $item->idCodigoProducto; ?></td>
-                        <td><?php echo $item->nombreProducto; ?></td>
-                        <td><?php echo $item->precio; ?></td>
-                        <td><?php echo $item->marca; ?></td>
-                        <td><img src="<?php echo $item->imagenProducto; ?>"class="imagen"></td>
-                        <td><?php echo $item->categoria; ?></td>
-                        <?php if (!isset($_SESSION['USER_ID'])){?> 
-                              <td><a href="list" class="btn btn-primary">Volver</a></td>
-                        <?php }
-                              else{?> 
-                                  <td><a href="listAdmin" class="btn btn-primary">Volver</a></td>
-                       <?php  } ?>    
-                    </tr>      
-                <?php } ?>
-            </tbody>
-        </table>
-        <?php
-        require './templates/footer.phtml';
+    <thead>
+        <tr>
+            <th>Código Producto</th>
+            <th>Nombre Producto</th>
+            <th>Precio</th>
+            <th>Marca</th>
+            <th>Imagen Producto</th>
+            <th>Categoria</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($list as $item) { ?>
+            <tr>
+                <td><?php echo $item->idCodigoProducto; ?></td>
+                <td><?php echo $item->nombreProducto; ?></td>
+                <td><?php echo $item->precio; ?></td>
+                <td><?php echo $item->marca; ?></td>
+                <td><img src="<?php echo $item->imagenProducto; ?>" class="imagen"></td>
+                <td><?php echo $item->categoria; ?></td>
+                <td><a href="<?php echo $path; ?>" class="btn btn-primary">Volver</a></td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>
+<?php
+require './templates/footer.phtml';
