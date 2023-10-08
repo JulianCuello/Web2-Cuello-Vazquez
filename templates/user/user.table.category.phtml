@@ -26,7 +26,7 @@ require './templates/header.phtml';
                             <a href="<?php echo "$path/$item->idCategoria"; ?>" class="btn btn-primary">Ver Productos</a>
                             <?php if (isset($_SESSION['USER_ID'])) { ?>
                             <a href="removeCategory/<?php echo $item->idCategoria; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
-                            <a href="updateCategory/<?php echo $item->idCategoria; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
+                            <a href="updateCategoryForm/<?php echo $item->idCategoria; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
                             <?php } ?>
                         </td>
                         </tr>      

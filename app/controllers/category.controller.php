@@ -3,17 +3,14 @@ require_once './app/views/category.view.php';
 require_once './app/models/category.model.php';
 require_once './app/views/admin.view.php';
 
-class CategoryController
-{
-
+class CategoryController{
+    
     private $model;
     private $view;
-    private $adminView;
 
     public function __construct(){
         $this->model = new CategoryModel();
         $this->view = new CategoryView();
-        $this->adminView = new AdminView();
     }
 
     public function showCategory(){ //listado categorias (acceso publico)
@@ -48,15 +45,36 @@ class CategoryController
         header('Location: ' . BASE_URL . "categoryAdmin");
     }
 
-    public function showFormCategory()
-    {
+    public function showFormCategoryUpdate($id){//muestra formulario modificacion categoria (acceso administrador)
         AuthHelper::verify();
-        $this->view->formCategory();
+        $this->view->renderFormCategoryUpdate($id);
+    }
+
+    public function showCategoryUpdate(){//procesado de datos para modificar en tabla categoria (acceso administrador)
+        AuthHelper::verify();
+        $idCategoria = $_POST['idCategoria'];
+        $material = $_POST['material'];
+        $origen = $_POST['origen'];
+        $motor = $_POST['motor'];
+        $imagenCategoria = $_POST['imagenCategoria'];
+
+        //validaciones
+        $this->model->updateItem($idCategoria, $material, $origen, $motor, $imagenCategoria);
+        header('Location: ' . BASE_URL . "categoryAdmin");
+        /*
+        if ($id) {
+            header('Location: ' . BASE_URL."listAdmin");
+        } else {
+            $this->view->showError("Error al insertar la tarea");
+        }*/
+    }
+    public function showFormCategory(){//muestra formulario alta categoria (acceso administrador)
+        AuthHelper::verify();
+        $this->view->renderFormCategory();
     }
 
 
-    public function addCategory()
-    {
+    public function addCategory(){//agrega categoria (acceso administrador  )
         AuthHelper::verify();
         $categoria = $_POST['categoria'];
         $material = $_POST['material'];
@@ -84,22 +102,5 @@ class CategoryController
     
 
 
-    public function showCategoryUpdate()
-    {
-        $idCategoria = $_POST['idCategoria'];
-        $material = $_POST['material'];
-        $origen = $_POST['origen'];
-        $motor = $_POST['motor'];
-        $imagenCategoria = $_POST['imagenCategoria'];
-
-        //validaciones
-        $this->model->updateItem($idCategoria, $material, $origen, $motor, $imagenCategoria);
-        header('Location: ' . BASE_URL . "categoryAdmin");
-        /*
-        if ($id) {
-            header('Location: ' . BASE_URL."listAdmin");
-        } else {
-            $this->view->showError("Error al insertar la tarea");
-        }*/
-    }
+    
 }

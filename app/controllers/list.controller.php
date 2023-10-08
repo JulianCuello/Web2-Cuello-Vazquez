@@ -10,13 +10,11 @@ class ListController {
     
     private $model;
     private $view;
-    private $viewAdmin;//esta bien la vista del administrador?
 
     public function __construct() {
         $this->model = new ListModel();
         $this->view = new ListView();
-        $this->viewAdmin = new AdminView();
-    }//IMPORTANTE, SON EL MISMO METODO PERO SE HIZO DISTINTO PARA PODER DIFERENCIAR la vista del usuario a la del administ
+    }
    
     public function showList() {//vista de usuario publico
         $list = $this->model->getList();
@@ -83,8 +81,9 @@ class ListController {
 
     public function showFormAlta(){//muestra formulario alta item (acceso solo administradors)
         AuthHelper::verify();
-        $this->viewAdmin->showForm();
+        $this->view->showForm();
     }
+    
 
     public function addItem() {
         AuthHelper::verify();

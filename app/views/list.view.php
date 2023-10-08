@@ -13,10 +13,11 @@ class ListView {
     }
 
     public function renderFormUpdate($id) {
-        //var_dump($id,$category);
-        //die();
-        require './templates/forms/form_update.phtml';        
-        
+        require './templates/forms/form_update.phtml';          
+    }
+    
+    public function showForm(){
+        require './templates/forms/form_alta.phtml';
     }
 
 }

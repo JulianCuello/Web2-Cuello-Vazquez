@@ -14,7 +14,10 @@
        /* function showCategoriesAdmin ($categories){
             require './templates/admin/admin.table.category.phtml';
         }*/
-    function formCategory(){
+    function renderFormCategoryUpdate($idCategoria){
+        require './templates/forms/form_update.category.phtml';
+    }
+    function renderFormCategory(){
         require './templates/forms/form_alta.category.phtml';
     }
  }
