@@ -51,11 +51,15 @@ class ListController {
 
     public function showFormUpdate($id){//muestra formulario modificacion item (acceso solo administrador)
         AuthHelper::verify();
-        $idCategory=$this->model->getIdCategory();
-        $this->view->renderFormUpdate($id, $idCategory);
+        //$category=$this->model->getIdCategory();
+        //var_dump($Category,"sali de category");
+        //die();
+        $this->view->renderFormUpdate($id);
     }
 
     public function showUpdate(){//hasta aca llegue
+        //var_dump($_POST, "estoy aca");
+        //die();
         AuthHelper::verify();
         $idProducto = $_POST['idProducto'];
         $idCodigoProducto = $_POST['idCodigoProducto'];
@@ -77,13 +81,13 @@ class ListController {
 
     }
 
-    public function showFormAlta(){
+    public function showFormAlta(){//muestra formulario alta item (acceso solo administradors)
+        AuthHelper::verify();
         $this->viewAdmin->showForm();
     }
 
     public function addItem() {
-
-        // obtengo los datos del usuario
+        AuthHelper::verify();
         $idCodigoProducto = $_POST['idCodigoProducto'];
         $nombreProducto = $_POST['nombreProducto'];
         $precio= $_POST['precio'];

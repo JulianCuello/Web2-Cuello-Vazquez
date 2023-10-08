@@ -12,7 +12,9 @@ class ListView {
         
     }
 
-    public function renderFormUpdate($list, $category) {
+    public function renderFormUpdate($id) {
+        //var_dump($id,$category);
+        //die();
         require './templates/forms/form_update.phtml';        
         
     }

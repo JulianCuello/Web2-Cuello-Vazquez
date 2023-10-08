@@ -9,11 +9,11 @@ class AdminView {
     public function showCategory($categories) {
         require('./templates/admin/admin.table.category.phtml');
     }
-    function showCategoriesAdmin ($categories){
+    public function showCategoriesAdmin ($categories){
         require './templates/admin/admin.table.category.phtml';
     }
 
-    function showForm(){
+    public function showForm(){
         require './templates/forms/form_alta.phtml';
     }
 }

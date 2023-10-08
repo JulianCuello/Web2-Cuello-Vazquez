@@ -24,7 +24,7 @@ require './templates/header.phtml';
                         <td><?php echo $item->marca; ?></td>
                         <td><img src="<?php echo $item->imagenProducto; ?>"class="imagen"></td>
                         <td><?php echo $item->categoria; ?></td>
-                        <td><a href="category" class="btn btn-primary">Volver</a></td>   
+                        <td><a href="<?php echo $path;?>" class="btn btn-primary">Volver</a></td>   
                     </tr>      
                 <?php } ?>
             </tbody>

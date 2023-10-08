@@ -41,7 +41,6 @@ switch ($params[0]) {
         $controller = new ListController();
         $controller->showAdminList();
         break;
-
     case 'listId'://vista del usuario
         $controller = new ListController();
         $controller->showListById($params[1]);
@@ -64,8 +63,37 @@ switch ($params[0]) {
     case 'updateItem':
         $controller= new ListController();
         $controller->showUpdate();
-        break;//HASTA ACA LLEGUE!!!
+        break;
+    case 'addItemForm':
+        $controller = new ListController();
+        $controller->showFormAlta();
+        break;
+    case 'addItem':
+        $controller = new ListController();
+        $controller->addItem();
+        break;
+    case 'category':
+        $controller = new CategoryController();
+        $controller->showCategory();
+        break;
+    case 'categoryAdmin':
+        $controller = new categoryController();
+        $controller->showCategoryAdmin();
+        break;
 
+    case 'categoryId':
+        $controller = new CategoryController();
+        $controller->showCategoryById($params[1]);
+        break;
+    case 'categoryIdAdmin':
+        $controller = new CategoryController();
+        $controller->showCategoryAdminById($params[1]);
+        break; 
+    case 'removeCategory':
+        $controller = new categoryController();
+        $controller->removeCategory($params[1]);
+        break;
+    
     case 'login':
         $controller = new AuthController();
         $controller->showLogin(); 
@@ -84,36 +112,20 @@ switch ($params[0]) {
 
     
         
-    case 'category':
-        $controller = new CategoryController();
-        $controller->showCategory();
-        break;
-    case 'categoryId':
-        $controller = new CategoryController();
-        $controller->showCategoryById($params[1]);
-        break;
-        //gestion de items
     
-        case 'form':
-            $controller = new ListController();
-            $controller->showFormAlta();
-            break;
+       //gestion de items
+    
+        
 
 
         
         
-        case 'addItem':
-            $controller = new ListController();
-            $controller->addItem();
-            break;
+        
         
         
         
             //gestion de categorias
-        case 'categoryAdmin':
-            $controller = new categoryController();
-            $controller->showCategoryAdmin();
-            break;
+        
         case 'formCategory':
             $controller = new categoryController();
             $controller->showFormCategory();
@@ -130,10 +142,7 @@ switch ($params[0]) {
             $controller->showCategoryUpdate();
             break;
         
-        case 'removeCategory':
-            $controller = new categoryController();
-            $controller->removeCategory($params[1]);
-            break;
+        
     case 'about':
         $controller = new AboutController();
         $controller->showAbout();

@@ -3,11 +3,11 @@
     class CategoryView{
 
 
-    function showCategories($categorias){
+    function renderCategory($path,$categorias){
         require './templates/user/user.table.category.phtml';
     }
 
-    function showItemsCategoriesById($categorias){
+    function renderItemsCategoryById($path,$categorias){
         require './templates/user/user.table.itemsId.phtml';
     }
         // gestion categorias
