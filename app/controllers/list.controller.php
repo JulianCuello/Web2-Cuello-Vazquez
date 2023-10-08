@@ -1,7 +1,6 @@
 <?php
 require_once './app/models/list.model.php';
 require_once './app/views/list.view.php';
-require_once './app/views/admin.view.php';
 require_once './helpers/auth.helper.php';
 
   

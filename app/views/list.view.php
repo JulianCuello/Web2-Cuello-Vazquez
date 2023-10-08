@@ -4,20 +4,20 @@
 class ListView {
 
     public function renderList($list,$path) {//check
-        require('./templates/admin/admin.table.items.phtml');        
+        require('./templates/show/table.items.phtml');        
     }
     
     public function renderItemListById($list,$path) {
-        require './templates/show/showListItemById.phtml';        
+        require './templates/show/listItemById.phtml';        
         
     }
 
     public function renderFormUpdate($id) {
-        require './templates/forms/form_update.phtml';          
+        require './templates/forms/update.phtml';          
     }
     
     public function showForm(){
-        require './templates/forms/form_alta.phtml';
+        require './templates/forms/alta.phtml';
     }
 
 }
