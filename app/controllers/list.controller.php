@@ -1,7 +1,6 @@
 <?php
 require_once './app/models/list.model.php';
 require_once './app/views/list.view.php';
-require_once './app/views/admin.view.php';
 require_once './helpers/auth.helper.php';
 
   
@@ -10,13 +9,11 @@ class ListController {
     
     private $model;
     private $view;
-    private $viewAdmin;//esta bien la vista del administrador?
 
     public function __construct() {
         $this->model = new ListModel();
         $this->view = new ListView();
-        $this->viewAdmin = new AdminView();
-    }//IMPORTANTE, SON EL MISMO METODO PERO SE HIZO DISTINTO PARA PODER DIFERENCIAR la vista del usuario a la del administ
+    }
    
     public function showList() {//vista de usuario publico
         $list = $this->model->getList();
@@ -51,11 +48,15 @@ class ListController {
 
     public function showFormUpdate($id){//muestra formulario modificacion item (acceso solo administrador)
         AuthHelper::verify();
-        $idCategory=$this->model->getIdCategory();
-        $this->view->renderFormUpdate($id, $idCategory);
+        //$category=$this->model->getIdCategory();
+        //var_dump($Category,"sali de category");
+        //die();
+        $this->view->renderFormUpdate($id);
     }
 
     public function showUpdate(){//hasta aca llegue
+        //var_dump($_POST, "estoy aca");
+        //die();
         AuthHelper::verify();
         $idProducto = $_POST['idProducto'];
         $idCodigoProducto = $_POST['idCodigoProducto'];
@@ -77,13 +78,14 @@ class ListController {
 
     }
 
-    public function showFormAlta(){
-        $this->viewAdmin->showForm();
+    public function showFormAlta(){//muestra formulario alta item (acceso solo administradors)
+        AuthHelper::verify();
+        $this->view->showForm();
     }
+    
 
     public function addItem() {
-
-        // obtengo los datos del usuario
+        AuthHelper::verify();
         $idCodigoProducto = $_POST['idCodigoProducto'];
         $nombreProducto = $_POST['nombreProducto'];
         $precio= $_POST['precio'];

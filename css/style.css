@@ -4,5 +4,9 @@
 }
 
 body {
-    background-image: url(../img/fondo.jpg);
+    background-image: url(../img/.jpg);
+    background-position: center;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

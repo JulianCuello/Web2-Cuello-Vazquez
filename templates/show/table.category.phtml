@@ -15,17 +15,19 @@ require './templates/header.phtml';
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($categories as $item) { ?>      
+                <?php foreach($categorias as $item) { ?>      
                     <tr>
                         <td><?php echo $item->categoria; ?></td>
                         <td><?php echo $item->material; ?></td>
                         <td><?php echo $item->origen; ?></td>
                         <td><?php echo $item->motor; ?></td>
-                        <td><img src="<?php echo $item->imagenProducto; ?>"class="imagen"></td>
+                        <td><img src="<?php echo $item->imagenCategoria; ?>"class="imagen" style="max-width: 60px"></td>
                         <td>
-                            <a href="categoryId/<?php echo $item->idCategoria; ?>" class="btn btn-primary">Ver Productos</a>
+                            <a href="<?php echo "$path/$item->idCategoria"; ?>" class="btn btn-primary">Ver Productos</a>
+                            <?php if (isset($_SESSION['USER_ID'])) { ?>
                             <a href="removeCategory/<?php echo $item->idCategoria; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
-                            <a href="updateCategory/<?php echo $item->idCategoria; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
+                            <a href="updateCategoryForm/<?php echo $item->idCategoria; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
+                            <?php } ?>
                         </td>
                         </tr>      
                 <?php } ?>

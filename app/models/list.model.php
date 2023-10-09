@@ -35,7 +35,9 @@ class ListModel
         $query = $this->db->prepare('SELECT categoria.idCategoria,categoria.categoria FROM categoria;');
         $query->execute();
         $category = $query->fetchAll(PDO::FETCH_OBJ);
+        //var_dump($category, "estoy en getCategoryId()");
         return $category;
+        
     }
 
     

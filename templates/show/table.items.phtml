@@ -21,7 +21,7 @@ require './templates/header.phtml';
                     <td><?php echo $item->nombreProducto; ?></td>
                     <td><?php echo $item->precio; ?></td>
                     <td><?php echo $item->marca; ?></td>
-                    <td><img src="<?php echo $item->imagenProducto; ?>" class="imagen"></td>
+                    <td><img src="<?php echo $item->imagenProducto; ?>" class="imagen" style="max-width: 60px"></td>
                     <td><?php echo $item->categoria; ?></td>
                     <td>
                         <a href="<?php echo "$path/$item->idProducto"; ?>" class="btn btn-primary">Ver Producto</a>

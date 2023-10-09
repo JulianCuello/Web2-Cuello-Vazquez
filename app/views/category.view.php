@@ -3,21 +3,22 @@
     class CategoryView{
 
 
-    function showCategories($categorias){
-        require './templates/user/user.table.category.phtml';
+    function renderCategory($path,$categorias){
+        require './templates/show/table.category.phtml';
     }
 
-    function showItemsCategoriesById($categorias){
-        require './templates/user/user.table.itemsId.phtml';
+    function renderItemsCategoryById($path,$categorias){
+        require './templates/show/table.itemsId.phtml';
     }
-        // gestion categorias
-       /* function showCategoriesAdmin ($categories){
-            require './templates/admin/admin.table.category.phtml';
-        }*/
-    function formCategory(){
-        require './templates/forms/form_alta.category.phtml';
+    
+    function renderFormCategoryUpdate($idCategoria){
+        require './templates/forms/update.category.phtml';
     }
- }
+    function renderFormCategory(){
+        require './templates/forms/alta.category.phtml';
+    }
+
+}
 
  
 
