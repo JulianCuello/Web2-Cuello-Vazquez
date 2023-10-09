@@ -21,7 +21,11 @@ require './templates/header.phtml';
                         <td><?php echo $item->material; ?></td>
                         <td><?php echo $item->origen; ?></td>
                         <td><?php echo $item->motor; ?></td>
+<<<<<<< HEAD
                         <td><img src="<?php echo $item->imagenCategoria; ?>"class="imagen" style="max-width: 60px"></td>
+=======
+                        <td><img src="<?php echo $item->imagenCategoria; ?>"class="imagen"></td>
+>>>>>>> 5d5ff11fe517c4d8c3a7fa6d16b0320e95d8150b
                         <td>
                             <a href="<?php echo "$path/$item->idCategoria"; ?>" class="btn btn-primary">Ver Productos</a>
                             <?php if (isset($_SESSION['USER_ID'])) { ?>
