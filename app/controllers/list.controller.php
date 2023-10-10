@@ -1,6 +1,7 @@
 <?php
 require_once './app/models/list.model.php';
 require_once './app/views/list.view.php';
+require_once './app/views/alert.view.php';
 require_once './helpers/auth.helper.php';
 
   
@@ -9,10 +10,12 @@ class ListController {
     
     private $model;
     private $view;
+    private $alertView;
 
     public function __construct() {
         $this->model = new ListModel();
         $this->view = new ListView();
+        $this->alertView=new AlertView();
     }
    
     public function showList() {//vista de usuario publico
@@ -22,7 +25,7 @@ class ListController {
             $this->view->renderList($list,$href);    
         }
         else{
-            $this->view->renderEmpty("la lista se encuetra vacia");
+            $this->alertView->renderEmpty("la lista se encuetra vacia");
         }
         
     }
@@ -34,7 +37,7 @@ class ListController {
             $this->view->renderList($list,$href);    
         }
         else{
-            $this->view->renderEmpty("la lista se encuentra vacia");
+            $this->alertView->renderEmpty("la lista se encuentra vacia");
         }
     }
 
@@ -45,7 +48,7 @@ class ListController {
             $this->view->renderItemListbyId($item,$href);
         }
         else{
-            $this->view->renderEmpty("la lista se encuentra vacia");
+            $this->alertView->renderEmpty("la lista se encuentra vacia");
         }
     }
 
@@ -57,7 +60,7 @@ class ListController {
         $this->view->renderItemListbyId($item,$href);
         }
         else{
-            $this->view->renderEmpty("la lista se encuentra vacia");
+            $this->alertView->renderEmpty("la lista se encuentra vacia");
         }
     }
 
@@ -67,7 +70,7 @@ class ListController {
         if($id==$idEliminado){
             header('Location: ' . BASE_URL."listAdmin");
         }
-        else{ $this->view->renderError("error al intentar eliminar");
+        else{ $this->alertView->renderError("error al intentar eliminar");
             }
         
     }

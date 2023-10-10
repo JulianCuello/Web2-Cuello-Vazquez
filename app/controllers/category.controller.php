@@ -1,5 +1,6 @@
 <?php
 require_once './app/views/category.view.php';
+require_once './app/views/alert.views.php';
 require_once './app/models/category.model.php';
 
 
@@ -7,10 +8,12 @@ class CategoryController{
     
     private $model;
     private $view;
+    private $alertView;
 
     public function __construct(){
         $this->model = new CategoryModel();
         $this->view = new CategoryView();
+        $this->alertView= new AlertView();
     }
 
     public function showCategory(){ //listado categorias (acceso publico)
