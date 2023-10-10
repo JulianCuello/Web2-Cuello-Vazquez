@@ -17,41 +17,65 @@ class ListController {
    
     public function showList() {//vista de usuario publico
         $list = $this->model->getList();
-        $path = 'listId';
-        $this->view->renderList($list,$path);
+        $href = 'listId';
+        if($list!=null){
+            $this->view->renderList($list,$href);    
+        }
+        else{
+            $this->view->renderEmpty("la lista se encuetra vacia");
+        }
+        
     }
     public function showAdminList(){//vista de administrador
         AuthHelper::verify();
-        $list=$this->model->getList();
-        $path = 'listAdminId';
-        $this->view->renderList($list, $path);
+        $list = $this->model->getList();
+        $href = 'listAdminId';
+        if($list!=null){
+            $this->view->renderList($list,$href);    
+        }
+        else{
+            $this->view->renderEmpty("la lista se encuentra vacia");
+        }
     }
 
     public function showListById($id) {//item con el id del parametro (usuario publico) 
         $item = $this->model->getListById($id);
-        $path= "list";
-        $this->view->renderItemListbyId($item,$path);
+        $href= "list";
+        if($item!=null){
+            $this->view->renderItemListbyId($item,$href);
+        }
+        else{
+            $this->view->renderEmpty("la lista se encuentra vacia");
+        }
     }
 
     public function showAdminListById($id) {//item con el id del parametro (acceso solo aministrador)
         AuthHelper::verify();
-        $path= "listAdmin";
         $item = $this->model->getListById($id);
-        $this->view->renderItemListbyId($item,$path);
+        $href= "listAdmin";
+        if($item!=null){
+        $this->view->renderItemListbyId($item,$href);
+        }
+        else{
+            $this->view->renderEmpty("la lista se encuentra vacia");
+        }
     }
 
     public function removeItem($id) {//elimina item (acceso solo administrador)
         AuthHelper::verify();
-        $this->model->deleteItem($id);
-        header('Location: ' . BASE_URL."listAdmin");
+        $idEliminado=$this->model->deleteItem($id);
+        if($id==$idEliminado){
+            header('Location: ' . BASE_URL."listAdmin");
+        }
+        else{ $this->view->renderError("error al intentar eliminar");
+            }
+        
     }
 
     public function showFormUpdate($id){//muestra formulario modificacion item (acceso solo administrador)
         AuthHelper::verify();
-        //$category=$this->model->getIdCategory();
-        //var_dump($Category,"sali de category");
-        //die();
-        $this->view->renderFormUpdate($id);
+        $categoria=$this->model->getIdCategory();
+        $this->view->renderFormUpdate($id,$categoria );
     }
 
     public function showUpdate(){//hasta aca llegue
@@ -77,10 +101,11 @@ class ListController {
         }*/
 
     }
-
+    
     public function showFormAlta(){//muestra formulario alta item (acceso solo administradors)
         AuthHelper::verify();
-        $this->view->showForm();
+        $categoria=$this->model->getIdCategory();//se consulta las categorias disponibles
+        $this->view->showForm($categoria);
     }
     
 

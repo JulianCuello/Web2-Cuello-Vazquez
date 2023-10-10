@@ -15,34 +15,61 @@ class CategoryController{
 
     public function showCategory(){ //listado categorias (acceso publico)
         $categorias = $this->model->getCategoria();
-        $path = 'categoryId';
-        $this->view->renderCategory($path, $categorias);
+        $href = 'categoryId';
+        if($categorias!=null){
+        $this->view->renderCategory($href, $categorias);
+        }
+        else{
+            $this->view->renderEmpty("la lista se encuetra vacia");
+        }
     }
 
     public function showCategoryAdmin(){ //listado categorias (acceso Administrador)
         AuthHelper::verify();
-        $path = 'categoryIdAdmin';
         $categorias = $this->model->getCategoria();
-        $this->view->renderCategory($path, $categorias);
-    }
+        $href = 'categoryIdAdmin';
+        if($categorias!=null){
+            $this->view->renderCategory($href, $categorias);
+            }
+            else{
+                $this->view->renderEmpty("la lista se encuetra vacia");
+            }
+        }
 
     public function showCategoryById($id){ //detalle categorias(acceso usuario publico)
         $categoria = $this->model->getItemsCategoriaById($id);
-        $path = 'category';
-        $this->view->renderItemsCategoryById($path, $categoria);
+        $href = 'category';
+        if($categoria!=null){
+        $this->view->renderItemsCategoryById($href, $categoria);
+        }
+        else{
+            $this->view->renderEmpty("la categoria seleccionada no contiene items asociados");
+        }
     }
 
     public function showCategoryAdminById($id){ //detalle categorias(acceso administrador)
         AuthHelper::verify();
-        $path = 'categoryAdmin';
+        $href = 'categoryAdmin';
         $categoria = $this->model->getItemsCategoriaById($id);
-        $this->view->renderItemsCategoryById($path, $categoria);
+        if($categoria!=null){
+            $this->view->renderItemsCategoryById($href, $categoria);
+        }
+        else{
+            $this->view->renderEmpty("la categoria seleccionada no contiene items asociados");
+        }
     }
 
     public function removeCategory($id){//eliminacion de categoria(acceso administrador)
         AuthHelper::verify();
-        $this->model->deleteCategory($id);
-        header('Location: ' . BASE_URL . "categoryAdmin");
+        try{
+            $this->model->deleteCategory($id);
+            header('Location: ' . BASE_URL . "categoryAdmin");
+        }catch(PDOException $error){
+            if($error->getCode()=='23000'){
+                $this->view->renderError("la Categoria que intenta eliminar, tiene asociado un conjunto de items.
+                                        Para poder eliminar correctamente, debera eliminar los registros de los items asociados");
+            }
+        }
     }
 
     public function showFormCategoryUpdate($id){//muestra formulario modificacion categoria (acceso administrador)

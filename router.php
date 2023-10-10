@@ -3,6 +3,7 @@ require_once './app/controllers/list.controller.php';
 require_once './app/controllers/about.controller.php';
 require_once './app/controllers/category.controller.php';
 require_once './app/controllers/auth.controller.php';
+require_once './app/controllers/show.controller.php';
 
 
 
@@ -13,20 +14,32 @@ if (!empty( $_GET['action'])) {
     $action = $_GET['action'];
 }
 
-// listar productos    ->        ShowListController->showList();  //todos los Productos + categorias solo lo ve el usuario
-// listar producto/:Id ->        ShowListController->showListById();//solo el producto seleccionado.
-// listar categorias  ->         ShowCategoryController->showCategory();//todas las categorias
-// listar categoria/:Id ->       ShowCategoryController->showCategoryByid();//sola la categoria seleccionada.
-// listar productosAdmin->       ShowListController->showAdminList();//todos los productos + solo los ve el administrador
-// agregar productos ->          ShowListControler->addItem();//agrega item.
-// removeItem/:Id ->             ShowListController->removeItem($id);//elimina item.
-// MostrarFormAlta->             showForm();//formulario para agregar item.
-// login ->                      authContoller->showLogin();
-// logout ->                     authContoller->logout();
-// auth                          authContoller->auth(); // toma los datos del post y autentica al usuario
-
-
-// about ->             aboutController->showAbout();
+/*
+  tabla ruteo                controller                                          descripc                        acceso                  
+| list                   -> |ListController    |showList()              |lista productos                       | publico
+| listAdmin              -> |ListController    |showAdminList()         |lista productos                       | administrador
+| listId/:id             -> |ListController    |showListById(id)        |lista producto por id                 | publico
+| listAdminId/:id        -> |ListController    |showAdminListById(id)   |lista producto por id                 | administrador
+| removeItem/:id         -> |ListController    |removeItem(id)          |elimina registro de item              | administrador
+| updateItemForm/:id     -> |ListController    |showFormUpdate(id)      |redirige a formulario de modificacion | administrador
+| updateItem             -> |ListController    |showUpdate()            |envia formulario con modificacion     | administrador
+| addItemForm            -> |ListController    |showFormAlta()          |redirige a formulario alta producto   | administrador
+| addItem                -> |ListController    |addItem()               |envia formulario y crea nuevo producto| administrador
+|---------------------------|------------------|------------------------|--------------------------------------|--------------
+| category               -> |CategoryController|showCategory()          |lista categorias                      | publico
+| categoryAdmin          -> |CategoryController|showCategoryAdmin()     |lista categorias                      | administrador
+| categoryId/:id         -> |CategoryController|showCategoryById())     |lista categoria por id                | publico
+| categoryIdAdmin/:id    -> |CategoryController|showCategoryAdminById() |lista categoria por id                | administrador
+| removeCategory/:id     -> |CategoryController|removeCategory()        |elimina registro de categoria         | administrador
+| updateCategoryForm/:id -> |CategoryController|showFormCategoryUpdate()|redirige a formulario de modificacion | administrador
+| updateCategory         -> |CategoryController|showCategoryUpdate()    |envia formulario con modificacion     | administrador
+| addCategoryForm        -> |CategoryController|showFormCategory()      |redirige a formulario alta categoria  | administrador
+| addCategory            -> |CategoryController|addCategory()           |envia formulario ,crea nueva categoria| administrador
+|---------------------------|------------------|------------------------|--------------------------------------|----------------
+| login                  -> |AuthController    |showLogin()             |                                      |
+| logou                  -> |AuthController    |showLogout()            |                                      |
+| about                  -> |AboutController   |showAbout();            |                                      |
+*/
 
 // parsea la accion para separar accion real de parametros
 $params = explode('/', $action);
@@ -122,6 +135,7 @@ switch ($params[0]) {
         $controller->showAbout();
         break;
     default: 
-        echo "404 Page Not Found";
+        $controller =new showController();
+        $controller->showError404("Page--Not--Found");
         break;
 }

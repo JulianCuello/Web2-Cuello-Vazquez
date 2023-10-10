@@ -21,7 +21,7 @@ require './templates/task/header.phtml';
                         <td><?php echo $item->material; ?></td>
                         <td><?php echo $item->origen; ?></td>
                         <td><?php echo $item->motor; ?></td>
-                        <td><img src="<?php echo $item->imagenCategoria; ?>"class="imagen" style="max-width: 60px"></td>
+                        <td><img src="<?php echo $item->imagenCategoria; ?>"class="imagen" style="max-width: 80px"></td>
                         <td>
                             <a href="<?php echo "$path/$item->idCategoria"; ?>" class="btn btn-primary">Ver Productos</a>
                             <?php if (isset($_SESSION['USER_ID'])) { ?>

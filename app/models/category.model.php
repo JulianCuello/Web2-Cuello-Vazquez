@@ -40,7 +40,7 @@ class CategoryModel {
 function deleteCategory($id) {
     $query = $this->db->prepare('DELETE FROM categoria WHERE idCategoria = ?');
     $query->execute([$id]);
-
+    
 }
 
 function updateItem($idCategoria,$material,$origen,$motor,$imagenCategoria) {   

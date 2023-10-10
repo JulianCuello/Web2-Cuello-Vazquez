@@ -17,6 +17,13 @@
     function renderFormCategory(){
         require './templates/forms/alta.category.phtml';
     }
+    public function renderEmpty($text){
+        require './templates/alerts/empty.phtml';
+    }
+    
+    public function renderError($error){
+        require './templates/alerts/error.phtml';
+    }
 
 }
 

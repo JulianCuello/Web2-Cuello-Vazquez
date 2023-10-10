@@ -1,20 +1,15 @@
 <?php
-
-require './templates/task/header.phtml';  ?>
+    require_once 'templates/task/header.phtml';  ?>
     <body>
     <div class="container mt-5">
         <h2>Modificacion de Producto</h2>
         <form action="updateItem" method="POST">
-            <div class="mb-3">
+            <div class="mb-3">                
                 <label for="categoria" class="form-label">Categoría</label>
                 <select class="form-select" id="categoria" name="idCategoria">
-                    <option value="1">motor</option>
-                    <option value="2">carroceria</option>
-                    <option value="3">suspension</option>
-                    <option value="4">refrigeracion</option>
-                    <option value="5">frenos</option>
-                    <option value="6">iluminacion</option>
-                    <option value="7">interior</option>
+                <?php foreach($categoria as $cat){ ?>    
+                <option value="<?php echo $cat->idCategoria;?>"><?php echo $cat->categoria;?></option>
+                <?php } ?>   
                 </select>
             </div>
             <div class="mb-3">
@@ -47,5 +42,5 @@ require './templates/task/header.phtml';  ?>
 
     <?php
 
-    require_once 'templates/footer.phtml'; 
+    require_once 'templates/task/footer.phtml';
 

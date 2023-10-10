@@ -42,9 +42,11 @@ class ListModel
 
     
     function deleteItem($id)
-    {
+    {   
         $query = $this->db->prepare('DELETE FROM repuestos WHERE idProducto = ?');
         $query->execute([$id]);
+        $this->db->lastInsertId();
+        return $id;
     }
     
 

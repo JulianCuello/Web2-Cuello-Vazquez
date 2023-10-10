@@ -1,33 +1,25 @@
-<?php
-require './templates/task/header.phtml';
+<?php require './templates/task/header.phtml'; ?>
 
-?>
+<div class="container mt-5">
+    <?php foreach ($list as $item) { ?>
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="<?php echo $item->imagenProducto; ?>" class="img-fluid rounded-start" alt="Imagen del Producto">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $item->nombreProducto; ?></h5>
+                        <p class="card-text"><?php echo $item->idCodigoProducto; ?></p>
+                        <p class="card-text"><strong>Precio:</strong> <?php echo $item->precio; ?></p>
+                        <p class="card-text"><strong>Marca:</strong> <?php echo $item->marca; ?></p>
+                        <p class="card-text"><strong>Categoría:</strong> <?php echo $item->categoria; ?></p>
+                        <a href="<?php echo $path;?>" class="btn btn-primary">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Código Producto</th>
-            <th>Nombre Producto</th>
-            <th>Precio</th>
-            <th>Marca</th>
-            <th>Imagen Producto</th>
-            <th>Categoria</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($list as $item) { ?>
-            <tr>
-                <td><?php echo $item->idCodigoProducto; ?></td>
-                <td><?php echo $item->nombreProducto; ?></td>
-                <td><?php echo $item->precio; ?></td>
-                <td><?php echo $item->marca; ?></td>
-                <td><img src="<?php echo $item->imagenProducto; ?>" class="imagen"></td>
-                <td><?php echo $item->categoria; ?></td>
-                <td><a href="<?php echo $path; ?>" class="btn btn-primary">Volver</a></td>
-            </tr>
-        <?php } ?>
-    </tbody>
-</table>
-<?php
- require_once 'templates/task/footer.phtml';
+<?php require_once 'templates/task/footer.phtml'; ?>

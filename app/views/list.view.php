@@ -12,12 +12,20 @@ class ListView {
         
     }
 
-    public function renderFormUpdate($id) {
+    public function renderFormUpdate($id, $categoria) {
         require './templates/forms/update.phtml';          
     }
     
-    public function showForm(){
+    public function showForm($categoria){
         require './templates/forms/alta.phtml';
+    }
+
+    public function renderError($error){
+        require './templates/alerts/error.phtml';
+    }
+
+    public function renderEmpty($text){
+        require './templates/alerts/empty.phtml';
     }
 
 }
