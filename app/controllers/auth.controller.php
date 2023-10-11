@@ -1,46 +1,50 @@
-<?php 
+<?php
 require_once './app/views/auth.view.php';
 require_once './app/models/user.model.php';
 require_once './helpers/auth.helper.php';
 
-class AuthController {
+class AuthController{
     private $view;
     private $model;
 
-    function __construct() {
+    public function __construct(){
         $this->model = new UserModel();
         $this->view = new AuthView();
     }
 
-    public function showLogin() {
+    public function showLogin(){
         $this->view->showLogin();
     }
 
-    public function auth() {//recibe por post desde el login
+    public function auth(){ //autenticacion de Usuario
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        if (empty($email) || empty($password)) {//chequea que no lleguen vacios(igual el form tiene el required)
-            $this->view->showLogin('Faltan completar datos');
-            return;//sale ya desde aca y no pasa por los otros if
+        if (empty($email) || empty($password)) {
+            $this->view->showLogin('Datos incompletos');
+            return;
         }
 
-        // busco el usuario
+        //traigo el usuario de la base de datos
         $user = $this->model->getByEmail($email);
 
         if ($user && password_verify($password, $user->password)) {
-            // ACA LO AUTENTIQUE credenciales validas....
-            
+            // se autentican las credenciales y permito el acceso
             AuthHelper::login($user);
-            
-            header('Location: ' . BASE_URL."listAdmin");
+            header('Location: ' . BASE_URL . "listAdmin");
         } else {
-            $this->view->showLogin('Usuario inválido'); //lo mando de nuevo al login con el mensaje de error
+            //se redirije para volver a ingresar.
+            $this->view->showLogin('Usuario inválido'); 
         }
     }
 
-    public function logout() {
+    public function logout(){
         AuthHelper::logout();
-        header('Location: ' . BASE_URL);    
+        header('Location: ' . BASE_URL);
     }
+
 }
+
+// $clave='admin';
+// echo password_hash($clave,PASSWORD_BCRYPT);
+

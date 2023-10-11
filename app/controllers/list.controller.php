@@ -1,35 +1,41 @@
 <?php
 require_once './app/models/list.model.php';
+require_once './app/models/category.model.php';
 require_once './app/views/list.view.php';
 require_once './app/views/alert.view.php';
-require_once './helpers/auth.helper.php';
+require_once './helpers/validation.helper.php';
 
-  
 
-class ListController {
-    
+
+class ListController{
+
     private $model;
     private $view;
     private $alertView;
+    private $modelCategory;
 
-    public function __construct() {
+    public function __construct(){
         $this->model = new ListModel();
         $this->view = new ListView();
-        $this->alertView=new AlertView();
+        $this->alertView = new AlertView();
+        $this->modelCategory = new CategoryModel();
     }
-   
-    public function showList() {//vista de usuario publico
-        $list = $this->model->getList();
-        $href = 'listId';
-        if($list!=null){
-            $this->view->renderList($list,$href);    
+
+    public function showList(){
+
+        if (AuthHelper::isAdmin()) {
+            $adm=true;//si es administrador
+        } else {
+            $adm=false;
         }
-        else{
+        $list = $this->model->getList();
+        if ($list != null) {
+            $this->view->renderList($list, $adm);
+        } else {
             $this->alertView->renderEmpty("la lista se encuetra vacia");
         }
-        
     }
-    public function showAdminList(){//vista de administrador
+    /*public function showAdminList(){//vista de administrador
         AuthHelper::verify();
         $list = $this->model->getList();
         $href = 'listAdminId';
@@ -39,20 +45,26 @@ class ListController {
         else{
             $this->alertView->renderEmpty("la lista se encuentra vacia");
         }
-    }
+    }*/
 
-    public function showListById($id) {//item con el id del parametro (usuario publico) 
-        $item = $this->model->getListById($id);
-        $href= "list";
-        if($item!=null){
-            $this->view->renderItemListbyId($item,$href);
+    public function showListById($params){ 
+
+        if ($params[0] == 'listId') {
+            $href = "list";
+        } else {
+            $href = 'listAdmin';
+            AuthHelper::verify();
         }
-        else{
+        $id = $params[1];
+        $item = $this->model->getListById($id);
+        if ($item != null) {
+            $this->view->renderItemListbyId($item, $href);
+        } else {
             $this->alertView->renderEmpty("la lista se encuentra vacia");
         }
     }
 
-    public function showAdminListById($id) {//item con el id del parametro (acceso solo aministrador)
+    /*public function showAdminListById($id) {//item con el id del parametro (acceso solo aministrador)
         AuthHelper::verify();
         $item = $this->model->getListById($id);
         $href= "listAdmin";
@@ -62,84 +74,86 @@ class ListController {
         else{
             $this->alertView->renderEmpty("la lista se encuentra vacia");
         }
-    }
+    }*/
 
-    public function removeItem($id) {//elimina item (acceso solo administrador)
+    public function removeItem($id){
         AuthHelper::verify();
-        $idEliminado=$this->model->deleteItem($id);
-        if($id==$idEliminado){
-            header('Location: ' . BASE_URL."listAdmin");
-        }
-        else{ $this->alertView->renderError("error al intentar eliminar");
+        try {
+            $registroEliminado = $this->model->deleteItem($id);
+            if ($registroEliminado > 0) {
+                header('Location: ' . BASE_URL . "listAdmin");
+            } else {
+                $this->alertView->renderError("error al intentar eliminar");
             }
-        
+        } catch (PDOException $error) {
+            $this->alertView->renderError("Error en la consulta a la base de datos/$error");
+        }
     }
 
-    public function showFormUpdate($id){//muestra formulario modificacion item (acceso solo administrador)
+    public function showFormUpdate($id){
         AuthHelper::verify();
-        $categoria=$this->model->getIdCategory();
-        $this->view->renderFormUpdate($id,$categoria );
+        $categoria = $this->modelCategory->getIdCategory();
+        $this->view->renderFormUpdate($id, $categoria);
     }
 
-    public function showUpdate(){//hasta aca llegue
-        //var_dump($_POST, "estoy aca");
-        //die();
+    public function showUpdate(){
         AuthHelper::verify();
-        $idProducto = $_POST['idProducto'];
-        $idCodigoProducto = $_POST['idCodigoProducto'];
-        $nombreProducto = $_POST['nombreProducto'];
-        $precio= $_POST['precio'];
-        $marca  = $_POST['marca'];
-        $imagenProducto=$_POST['imagenProducto'];
-        $idCategoria= $_POST['idCategoria'];
+        try {
+            if (ValidationHelper::verifyForm($_POST)) {
+                $idProducto = $_POST['idProducto'];
+                $idCodigoProducto = $_POST['idCodigoProducto'];
+                $nombreProducto = $_POST['nombreProducto'];
+                $precio = $_POST['precio'];
+                $marca  = $_POST['marca'];
+                $imagenProducto = $_POST['imagenProducto'];
+                $idCategoria = $_POST['idCategoria'];
 
-        //validaciones//ACA!! el id que devuelve siempre es 0, porque lo hace?
-        $this->model->updateItem($idProducto,$idCodigoProducto, $nombreProducto, $precio, $marca,$imagenProducto, $idCategoria);
-        header('Location: ' . BASE_URL."listAdmin");
-        /*
-        if ($id) {
-            header('Location: ' . BASE_URL."listAdmin");
-        } else {
-            $this->view->showError("Error al insertar la tarea");
-        }*/
+                $registroModificado = $this->model->updateItem($idProducto, $idCodigoProducto, $nombreProducto, $precio, $marca, $imagenProducto, $idCategoria);
 
+                if ($registroModificado > 0) {
+                    header('Location: ' . BASE_URL . "listAdmin");
+                } else {
+                    $this->alertView->renderError("No se pudo actualizar registro");
+                }
+            } else {
+                $this->alertView->renderError("Error-El formulario no pudo ser procesado, asegurate de que hayas completado todos los campos");
+            }
+        } catch (PDOException $error) {
+            $this->alertView->renderError("Error en la consulta a la base de datos/$error");
+        }
     }
-    
-    public function showFormAlta(){//muestra formulario alta item (acceso solo administradors)
+
+    public function showFormAlta(){ //muestra formulario alta item (acceso solo administradors)
         AuthHelper::verify();
-        $categoria=$this->model->getIdCategory();//se consulta las categorias disponibles
+        $categoria = $this->modelCategory->getIdCategory(); //se consulta las categorias disponibles
         $this->view->showForm($categoria);
     }
-    
 
-    public function addItem() {
+
+    public function addItem(){
         AuthHelper::verify();
-        $idCodigoProducto = $_POST['idCodigoProducto'];
-        $nombreProducto = $_POST['nombreProducto'];
-        $precio= $_POST['precio'];
-        $marca  = $_POST['marca'];
-        $imagenProducto=$_POST['imagenProducto'];
-        $idCategoria= $_POST['idCategoria'];
+        try {
+            if (ValidationHelper::verifyForm($_POST)) {
+                $idCodigoProducto = $_POST['idCodigoProducto'];
+                $nombreProducto = $_POST['nombreProducto'];
+                $precio = $_POST['precio'];
+                $marca  = $_POST['marca'];
+                $imagenProducto = $_POST['imagenProducto'];
+                $idCategoria = $_POST['idCategoria'];
 
+                $id = $this->model->insertItem($idCodigoProducto, $nombreProducto, $precio, $marca, $imagenProducto, $idCategoria);
 
-        // validaciones
-        if (empty($nombreProducto) || empty($marca)) {
-            $this->view->showError("Debe completar todos los campos");
-            return;
+                if ($id) {
+                    header('Location: ' . BASE_URL . "listAdmin");
+                } else {
+                    $this->alertView->renderError("Error al insertar la tarea");
+                }
+            } else {
+                $this->alertView->renderError("Error-El formulario no pudo ser procesado, asegurate de que hayas completado todos los campos");
+            }
+        } catch (PDOException $error) {
+            $this->alertView->renderError("Error en la consulta a la base de datos/$error");
         }
-
-        $id = $this->model->insertItem($idCodigoProducto, $nombreProducto, $precio, $marca,$imagenProducto, $idCategoria);
-        if ($id) {
-            header('Location: ' . BASE_URL."listAdmin");
-        } else {
-            $this->view->showError("Error al insertar la tarea");
-        }
-
-
-
     }
-
-   
-
-   
+    
 }

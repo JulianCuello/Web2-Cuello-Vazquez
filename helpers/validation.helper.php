@@ -2,9 +2,9 @@
 
 class ValidationHelper{
     
-    public static function veryfyForm($params){
-        foreach($params as $param){
-            if(!isset($_POST[$param])|| empty($_POST[$param])){
+    public static function verifyForm($params){
+        foreach($params as $param=>$paramValue){
+            if(!isset($paramValue)|| empty($paramValue)){
                 return false;
             }
         }return true;

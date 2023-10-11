@@ -3,12 +3,12 @@
 
 class ListView {
 
-    public function renderList($list,$path) {//check
-        require('./templates/show/table.items.phtml');        
+    public function renderList($list,$adm) {//check
+        require('./templates/show/list.items.phtml');        
     }
     
     public function renderItemListById($list,$path) {
-        require './templates/show/listItemById.phtml';        
+        require './templates/show/list.itemById.phtml';        
         
     }
 
@@ -17,22 +17,10 @@ class ListView {
     }
     
     public function showForm($categoria){
-        require './templates/forms/alta.phtml';
+        require './templates/forms/new.item.phtml';
     }
 
-    public function renderError($error){
-        require './templates/alerts/error.phtml';
-    }
-
-    public function renderEmpty($text){
-        require './templates/alerts/empty.phtml';
-    }
 
 }
 
-
-
-
-   // $clave='admin';
-   // echo password_hash($clave,PASSWORD_BCRYPT);
     

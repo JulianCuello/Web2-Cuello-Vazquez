@@ -1,6 +1,6 @@
 <?php
     require_once 'templates/task/header.phtml';  ?>
-    <body>
+    
     <div class="container mt-5">
         <h2>Modificacion de Producto</h2>
         <form action="updateItem" method="POST">
@@ -13,8 +13,7 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="idProducto" class="form-label">ID Producto</label>
-                <input type="text" class="form-control" id="idProducto" name="idProducto" value="<?php echo $id?>">
+                <input type="hidden" class="form-control" id="idProducto" name="idProducto" value="<?php echo $id?>">
             </div>
             <div class="mb-3">
                 <label for="idCodigoProducto" class="form-label">Código de Producto</label>

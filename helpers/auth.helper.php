@@ -28,11 +28,12 @@ class AuthHelper {
         }
     }
 
-    public static function veryfyForm($params){
-        foreach($params as $param){
-            if(!isset($_POST[$param])|| empty($_POST[$param])){
-                return false;
-            }
-        }return true;
+    public static function isAdmin() {//verifica que el usuario este logueado para cualquier acceso a secciones que intente
+        AuthHelper::init();//ingresar, si se le conceden los permisos.
+        if (isset($_SESSION['USER_ID'])) {//si no hay usuario significa que hay que redirigirlo a login
+            return true;
+        }else{
+            return false;
+        }   
     }
 }

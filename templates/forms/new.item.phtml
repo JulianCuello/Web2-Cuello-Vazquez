@@ -1,0 +1,38 @@
+<?php require_once 'templates/task/header.phtml'; ?>
+
+<div class="container mt-1">
+    <h5>Carga de Producto</h5>
+    <form action="addItem" method="POST">
+        <div class="mb-2">
+            <label for="categoria" class="form-label">Categoría</label>
+            <select class="form-select" id="categoria" name="idCategoria">
+                <?php foreach($categoria as $cat): ?>
+                    <option value="<?= $cat->idCategoria; ?>"><?= $cat->categoria; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="mb-2">
+            <label for="idCodigoProducto" class="form-label">Código</label>
+            <input type="text" class="form-control" id="idCodigoProducto" name="idCodigoProducto" required>
+        </div>
+        <div class="mb-2">
+            <label for="nombreProducto" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" required>
+        </div>
+        <div class="mb-2">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="precio" name="precio" required>
+        </div>
+        <div class="mb-2">
+            <label for="marca" class="form-label">Marca</label>
+            <input type="text" class="form-control" id="marca" name="marca" required>
+        </div>
+        <div class="mb-2">
+            <label for="imagenProducto" class="form-label">URL Imagen</label>
+            <input type="text" class="form-control" id="imagenProducto" name="imagenProducto">
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+    </form>
+</div>
+
+<?php require_once 'templates/task/footer.phtml'; ?>

@@ -1,52 +1,47 @@
 <?php
 
-class CategoryModel {
+class CategoryModel{
+    
     private $db;
 
-    function __construct() {
+    function __construct(){
         $this->db = new PDO('mysql:host=localhost;dbname=repuestos;charset=utf8', 'root', '');
     }
 
 
-    function getCategoria(){
+    public function getCategoria(){
         $query = $this->db->prepare('SELECT * FROM `categoria`');
-            $query->execute();
-
-            // $tasks es un arreglo de repuestos
-            $categorias = $query->fetchAll(PDO::FETCH_OBJ);
-
-            return $categorias;   
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);       
     }
 
-    function getItemsCategoriaById($id){
+    public function getItemsCategoriaById($id){
         $query = $this->db->prepare('SELECT repuestos.*, categoria.categoria FROM repuestos JOIN categoria ON repuestos.idCategoria = categoria.idCategoria WHERE repuestos.idCategoria=?');
-            $query->execute([$id]);
-
-            $categoria = $query->fetchAll(PDO::FETCH_OBJ);
-
-            return $categoria;
+        $query->execute([$id]);
+        return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-     /**
-     * Inserta la tarea en la base de datos
-     */
-    function insertCategory($categoria, $material, $origen, $motor, $imagenCategoria) {
+    public function insertCategory($categoria, $material, $origen, $motor, $imagenCategoria){
         $query = $this->db->prepare('INSERT INTO categoria (categoria, material, origen, motor, imagenCategoria) VALUES(?,?,?,?,?)');
         $query->execute([$categoria, $material, $origen, $motor, $imagenCategoria]);
-
         return $this->db->lastInsertId();
     }
 
-function deleteCategory($id) {
-    $query = $this->db->prepare('DELETE FROM categoria WHERE idCategoria = ?');
-    $query->execute([$id]);
-    
-}
+    public function deleteCategory($id){
+        $query = $this->db->prepare('DELETE FROM categoria WHERE idCategoria = ?');
+        $query->execute([$id]);
+        return $query->rowCount();
+    }
 
-function updateItem($idCategoria,$material,$origen,$motor,$imagenCategoria) {   
-    $query = $this->db->prepare('UPDATE categoria SET material=?,origen=?,motor=?,imagenCategoria=? WHERE idCategoria=?');
-    $query->execute([$material,$origen,$motor,$imagenCategoria,$idCategoria]);
-    //aca hay que preguntar como devuelvo un id valido.
-}
-}
+    public function updateItem($idCategoria, $material, $origen, $motor, $imagenCategoria){
+        $query = $this->db->prepare('UPDATE categoria SET material=?,origen=?,motor=?,imagenCategoria=? WHERE idCategoria=?');
+        $query->execute([$material, $origen, $motor, $imagenCategoria, $idCategoria]);
+        return $query->rowCount();
+    }
 
+    function getIdCategory(){ //consulta por la lista, incluida la categoria a la que corresponden
+        $query = $this->db->prepare('SELECT categoria.idCategoria,categoria.categoria FROM categoria;');
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+}

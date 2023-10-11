@@ -1,0 +1,38 @@
+
+<?php
+require './templates/task/header.phtml';   
+?>
+    <div class="mt-1 w-100 mx-auto" style="height: 300px;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Material</th>
+                    <th>origen</th>
+                    <th>Motor</th>
+                    <th>Imagen Categoria</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($categorias as $categoria) { ?>      
+                    <tr>
+                        <td><?php echo $categoria->categoria; ?></td>
+                        <td><?php echo $categoria->material; ?></td>
+                        <td><?php echo $categoria->origen; ?></td>
+                        <td><?php echo $categoria->motor; ?></td>
+                        <td><img src="<?php echo $categoria->imagenCategoria; ?>"class="imagen" style="max-width: 80px"></td>
+                        <td>
+                            <a href="<?php echo "$path/$categoria->idCategoria"; ?>" class="btn btn-primary">Ver Productos</a>
+                            <?php if (isset($_SESSION['USER_ID'])) { ?>
+                            <a href="removeCategory/<?php echo $categoria->idCategoria; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
+                            <a href="updateCategoryForm/<?php echo $categoria->idCategoria; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
+                            <?php } ?>
+                        </td>
+                        </tr>      
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+        <?php
+         require_once 'templates/task/footer.phtml';
