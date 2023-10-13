@@ -7,12 +7,12 @@ class ListView {
         require('./templates/show/list.items.phtml');        
     }
     
-    public function renderItemListById($list,$path) {
+    public function renderItemListById($list) {
         require './templates/show/list.itemById.phtml';        
         
     }
 
-    public function renderFormUpdate($id, $categoria) {
+    public function renderFormUpdate($categoria, $item) {
         require './templates/forms/update.phtml';          
     }
     

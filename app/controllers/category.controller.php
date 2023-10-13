@@ -8,75 +8,42 @@ require_once './helpers/validation.helper.php';
 class CategoryController{
 
     private $model;
+    private $modelList;
     private $view;
     private $alertView;
 
     public function __construct(){
         $this->model = new CategoryModel();
+        $this->modelList=new ListModel();
         $this->view = new CategoryView();
         $this->alertView = new AlertView();
     }
 
-    public function showCategory($params){
-        if ($params[0] === 'category') {
-            $href = 'categoryId';
-        } else {
-            AuthHelper::verify();
-            $href = 'categoryIdAdmin';
-        }
-        $categorias = $this->model->getCategoria();
+    public function showCategory(){
+        
+        $categorias = $this->model->getCategory();
         if ($categorias != null) {
-            $this->view->renderCategory($href, $categorias);
+            $this->view->renderCategory($categorias,AuthHelper::isAdmin());
         } else {
             $this->alertView->renderEmpty("la lista se encuetra vacia");
         }
     }
-    /*
-    public function showCategoryAdmin(){ //listado categorias (acceso Administrador)
-        AuthHelper::verify();
-        $categorias = $this->model->getCategoria();
-        $href = 'categoryIdAdmin';
-        if($categorias!=null){
-            $this->view->renderCategory($href, $categorias);
-            }
-            else{
-                $this->view->renderEmpty("la lista se encuetra vacia");
-            }
-        }
-    */
-    public function showCategoryById($params){ //detalle categorias(acceso usuario publico)
-        if ($params[0] === 'categoryId') {
-            $href = "category";
-        } else {
-            $href = 'categoryAdmin';
-            AuthHelper::verify();
-        }
-        $id = $params[1];
-        $categoria = $this->model->getItemsCategoriaById($id);
+    
+    public function showCategoryById($id){ //detalle categorias(acceso usuario publico)
+        
+        $categoria = $this->modelList->getItemsCategoryById($id);
         if ($categoria != null) {
-            $this->view->renderItemsCategoryById($href, $categoria);
+            $this->view->renderItemsCategoryById($categoria);
         } else {
             $this->alertView->renderEmpty("la categoria seleccionada no contiene items asociados");
         }
     }
-    /*
-    public function showCategoryAdminById($id){ //detalle categorias(acceso administrador)
-        AuthHelper::verify();
-        $href = 'categoryAdmin';
-        $categoria = $this->model->getItemsCategoriaById($id);
-        if($categoria!=null){
-            $this->view->renderItemsCategoryById($href, $categoria);
-        }
-        else{
-            $this->view->renderEmpty("la categoria seleccionada no contiene items asociados");
-        }
-    }*/
 
     public function removeCategory($id){
         AuthHelper::verify();
         try {
             $this->model->deleteCategory($id);
-            header('Location: ' . BASE_URL . "categoryAdmin");
+            header('Location: ' . BASE_URL . "category");
         } catch (PDOException $error) {
             if ($error->getCode() == '23000') {
                 $this->alertView->renderError("la Categoria que intenta eliminar, tiene asociado un conjunto de items.
@@ -88,7 +55,9 @@ class CategoryController{
 
     public function showFormCategoryUpdate($id){
         AuthHelper::verify();
-        $this->view->renderFormCategoryUpdate($id);
+        $categoria = $this->model->getCategoryId($id);
+        $this->view->renderFormCategoryUpdate($categoria);
+    
     }
 
     public function showCategoryUpdate(){
@@ -103,7 +72,7 @@ class CategoryController{
 
                 $categoriaModificada = $this->model->updateItem($idCategoria, $material, $origen, $motor, $imagenCategoria);
                 if ($categoriaModificada > 0) {
-                    header('Location: ' . BASE_URL . "categoryAdmin");
+                    header('Location: ' . BASE_URL . "category");
                 } else {
                     $this->alertView->renderError("No se pudo actualizar categoria");
                 }
@@ -135,7 +104,7 @@ class CategoryController{
 
                 $id = $this->model->insertCategory($categoria, $material, $origen, $motor, $imagenCategoria);
                 if ($id) {
-                    header('Location: ' . BASE_URL . "categoryAdmin");
+                    header('Location: ' . BASE_URL . "category");
                 } else {
                     $this->alertView->renderError("Error al insertar la categoria");
                 }

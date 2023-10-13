@@ -1,20 +1,21 @@
 <?php require './templates/task/header.phtml'; ?>
 
     <div class="container mt-5">
-        <?php foreach($categorias as $categoria) { ?>
+        <?php  foreach($categoria as $cat) { ?>
+            
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="<?php echo $categoria->imagenProducto; ?>" class="img-fluid rounded-start" alt="Imagen del Producto">
+                        <img src="<?php echo $cat->imagenProducto; ?>" class="img-fluid rounded-start" alt="Imagen del Producto">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $categoria->nombreProducto; ?></h5>
-                            <p class="card-text"><?php echo $categoria->idCodigoProducto; ?></p>
-                            <p class="card-text"><strong>Precio:</strong>$<?php echo $categoria->precio; ?></p>
-                            <p class="card-text"><strong>Marca:</strong> <?php echo $categoria->marca; ?></p>
-                            <p class="card-text"><strong>Categoría:</strong> <?php echo $categoria->categoria; ?></p>
-                            <a href="<?php echo $path; ?>" class="btn btn-primary">Volver</a>
+                            <h5 class="card-title"><?php echo $cat->nombreProducto; ?></h5>
+                            <p class="card-text"><?php echo $cat->idCodigoProducto; ?></p>
+                            <p class="card-text"><strong>Precio:</strong>$<?php echo $cat->precio; ?></p>
+                            <p class="card-text"><strong>Marca:</strong> <?php echo $cat->marca; ?></p>
+                            <p class="card-text"><strong>Categoría:</strong> <?php echo $cat->categoria; ?></p>
+                            <a href="category" class="btn btn-primary">Volver</a>
                         </div>
                     </div>
                 </div>

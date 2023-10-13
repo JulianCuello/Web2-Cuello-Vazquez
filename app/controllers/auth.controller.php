@@ -31,7 +31,7 @@ class AuthController{
         if ($user && password_verify($password, $user->password)) {
             // se autentican las credenciales y permito el acceso
             AuthHelper::login($user);
-            header('Location: ' . BASE_URL . "listAdmin");
+            header('Location: ' . BASE_URL . "list");
         } else {
             //se redirije para volver a ingresar.
             $this->view->showLogin('Usuario inválido'); 

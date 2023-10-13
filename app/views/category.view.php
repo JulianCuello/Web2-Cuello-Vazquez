@@ -2,15 +2,15 @@
 
     class CategoryView{
 
-    public function renderCategory($path,$categorias){
+    public function renderCategory($categorias,$adm){
         require './templates/show/list.category.phtml';
     }
 
-    public function renderItemsCategoryById($path,$categorias){
+    public function renderItemsCategoryById($categoria){
         require './templates/show/list.categoryById.phtml';
     }
     
-    public function renderFormCategoryUpdate($idCategoria){
+    public function renderFormCategoryUpdate($categoria){
         require './templates/forms/update.category.phtml';
     }
     public function renderFormCategory(){

@@ -23,65 +23,31 @@ class ListController{
 
     public function showList(){
 
-        if (AuthHelper::isAdmin()) {
-            $adm=true;//si es administrador
-        } else {
-            $adm=false;
-        }
         $list = $this->model->getList();
         if ($list != null) {
-            $this->view->renderList($list, $adm);
+            $this->view->renderList($list,AuthHelper::isAdmin());
         } else {
             $this->alertView->renderEmpty("la lista se encuetra vacia");
         }
     }
-    /*public function showAdminList(){//vista de administrador
-        AuthHelper::verify();
-        $list = $this->model->getList();
-        $href = 'listAdminId';
-        if($list!=null){
-            $this->view->renderList($list,$href);    
-        }
-        else{
-            $this->alertView->renderEmpty("la lista se encuentra vacia");
-        }
-    }*/
+    
 
-    public function showListById($params){ 
+    public function showListById($id){ 
 
-        if ($params[0] == 'listId') {
-            $href = "list";
-        } else {
-            $href = 'listAdmin';
-            AuthHelper::verify();
-        }
-        $id = $params[1];
         $item = $this->model->getListById($id);
         if ($item != null) {
-            $this->view->renderItemListbyId($item, $href);
+            $this->view->renderItemListbyId($item);
         } else {
             $this->alertView->renderEmpty("la lista se encuentra vacia");
         }
     }
 
-    /*public function showAdminListById($id) {//item con el id del parametro (acceso solo aministrador)
-        AuthHelper::verify();
-        $item = $this->model->getListById($id);
-        $href= "listAdmin";
-        if($item!=null){
-        $this->view->renderItemListbyId($item,$href);
-        }
-        else{
-            $this->alertView->renderEmpty("la lista se encuentra vacia");
-        }
-    }*/
-
-    public function removeItem($id){
+    public function removeItem($id){    
         AuthHelper::verify();
         try {
             $registroEliminado = $this->model->deleteItem($id);
             if ($registroEliminado > 0) {
-                header('Location: ' . BASE_URL . "listAdmin");
+                header('Location: ' . BASE_URL . "list");
             } else {
                 $this->alertView->renderError("error al intentar eliminar");
             }
@@ -92,8 +58,9 @@ class ListController{
 
     public function showFormUpdate($id){
         AuthHelper::verify();
+        $item = $this->model->getListById($id);
         $categoria = $this->modelCategory->getIdCategory();
-        $this->view->renderFormUpdate($id, $categoria);
+        $this->view->renderFormUpdate($categoria,$item);
     }
 
     public function showUpdate(){
@@ -111,7 +78,7 @@ class ListController{
                 $registroModificado = $this->model->updateItem($idProducto, $idCodigoProducto, $nombreProducto, $precio, $marca, $imagenProducto, $idCategoria);
 
                 if ($registroModificado > 0) {
-                    header('Location: ' . BASE_URL . "listAdmin");
+                    header('Location: ' . BASE_URL ."list");
                 } else {
                     $this->alertView->renderError("No se pudo actualizar registro");
                 }
@@ -144,7 +111,7 @@ class ListController{
                 $id = $this->model->insertItem($idCodigoProducto, $nombreProducto, $precio, $marca, $imagenProducto, $idCategoria);
 
                 if ($id) {
-                    header('Location: ' . BASE_URL . "listAdmin");
+                    header('Location: ' . BASE_URL ."list");
                 } else {
                     $this->alertView->renderError("Error al insertar la tarea");
                 }

@@ -1,11 +1,7 @@
 <?php
+require_once './app/models/model.php';
 
-class UserModel {
-    private $db;
-
-    function __construct() {
-        $this->db = new PDO('mysql:host=localhost;dbname=repuestos;charset=utf8', 'root', '');
-    }
+class UserModel extends Model{
 
     public function getByEmail($email) {
         $query = $this->db->prepare('SELECT * FROM usuarios WHERE email = ?');

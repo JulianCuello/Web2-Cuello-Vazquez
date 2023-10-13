@@ -1,25 +1,16 @@
 <?php
+require_once './app/models/model.php';
 
-class CategoryModel{
-    
-    private $db;
-
-    function __construct(){
-        $this->db = new PDO('mysql:host=localhost;dbname=repuestos;charset=utf8', 'root', '');
-    }
+class CategoryModel extends Model{
 
 
-    public function getCategoria(){
+    public function getCategory(){
         $query = $this->db->prepare('SELECT * FROM `categoria`');
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);       
     }
 
-    public function getItemsCategoriaById($id){
-        $query = $this->db->prepare('SELECT repuestos.*, categoria.categoria FROM repuestos JOIN categoria ON repuestos.idCategoria = categoria.idCategoria WHERE repuestos.idCategoria=?');
-        $query->execute([$id]);
-        return $query->fetchAll(PDO::FETCH_OBJ);
-    }
+    
 
     public function insertCategory($categoria, $material, $origen, $motor, $imagenCategoria){
         $query = $this->db->prepare('INSERT INTO categoria (categoria, material, origen, motor, imagenCategoria) VALUES(?,?,?,?,?)');
@@ -43,5 +34,11 @@ class CategoryModel{
         $query = $this->db->prepare('SELECT categoria.idCategoria,categoria.categoria FROM categoria;');
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function getCategoryId($id){
+        $query = $this->db->prepare('SELECT * FROM `categoria` WHERE idCategoria=?');
+        $query->execute([$id]);
+        return $query->fetchAll(PDO::FETCH_OBJ);       
     }
 }

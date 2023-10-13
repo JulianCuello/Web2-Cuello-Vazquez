@@ -24,7 +24,7 @@ require './templates/task/header.phtml';
                     <td><img src="<?php echo $item->imagenProducto; ?>" class="imagen" style="max-width: 80px"></td>
                     <td><?php echo $item->categoria; ?></td>
                     <td>
-                        <a href="<?php echo "listId/$item->idProducto"; ?>" class="btn btn-primary">Ver Producto</a>
+                        <a href="listId/<?php echo $item->idProducto;?>" class="btn btn-primary">Ver Producto</a>
                         <?php if ($adm) { ?>
                             <a href="removeItem/<?php echo $item->idProducto; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
                             <a href="updateItemForm/<?php echo $item->idProducto; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
