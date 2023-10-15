@@ -4,12 +4,12 @@ class AuthHelper {
 
     public static function init() {
         if (session_status() != PHP_SESSION_ACTIVE) {//nos evita que se inicien 2 veces las mismas sessiones
-            session_start();//termina siendo una funcion estatica que se puede consultar desde cualquier seccion
-        }//sin necesidad de tener que abrir y cerrar sesion en todo momento, evitando repetir codigo.
+            session_start();//funcion estatica que se puede consultar desde cualquier seccion
+        }
     }
 
     public static function login($user) {
-        AuthHelper::init();//se ejecuta el metodo para chequear si ya esta iniciada o no..
+        AuthHelper::init();//se ejecuta el metodo para chequear si ya esta iniciada o no
         $_SESSION['USER_ID'] = $user->id;//session toma los valores para poder consultar cada vez que se necesite 
         $_SESSION['USER_EMAIL'] = $user->email; //dar las autorizaciones
         
@@ -21,16 +21,16 @@ class AuthHelper {
     }
 
     public static function verify() {//verifica que el usuario este logueado para cualquier acceso a secciones que intente
-        AuthHelper::init();//ingresar, si se le conceden los permisos.
+        AuthHelper::init();//ingresa si se conceden permisos
         if (!isset($_SESSION['USER_ID'])) {//si no hay usuario significa que hay que redirigirlo a login
             header('Location: ' . BASE_URL . 'login');
-            die();//matar proceso para evitar continuarlo.
+            die();
         }
     }
 
     public static function isAdmin() {//verifica que el usuario este logueado para cualquier acceso a secciones que intente
         AuthHelper::init();//ingresar, si se le conceden los permisos.
-        if (isset($_SESSION['USER_ID'])) {//si no hay usuario significa que hay que redirigirlo a login
+        if (isset($_SESSION['USER_ID'])) {
             return true;
         }else{
             return false;

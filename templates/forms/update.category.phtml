@@ -8,23 +8,23 @@
         <form action="updateCategory" method="POST">
             
             <div class="mb-3">
-                <input type="hidden" class="form-control" id="idCategoria" name="idCategoria" value="<?php echo $categoria[0]->idCategoria?>">
+                <input type="hidden" class="form-control" id="idCategoria" name="idCategoria" value="<?=$categoria[0]->idCategoria?>">
             </div>
             <div class="mb-3">
                 <label for="material" class="form-label">Material</label>
-                <input type="text" class="form-control" id="material" name="material" value="<?php echo $categoria[0]->material;?>" required>
+                <input type="text" class="form-control" id="material" name="material" value="<?=$categoria[0]->material;?>" required>
             </div>
             <div class="mb-3">
                 <label for="origen" class="form-label">origen </label>
-                <input type="text" class="form-control" id="origen" name="origen" value="<?php echo $categoria[0]->origen;?>"required>
+                <input type="text" class="form-control" id="origen" name="origen" value="<?=$categoria[0]->origen;?>"required>
             </div>
             <div class="mb-3">
                 <label for="motor" class="form-label">Motor</label>
-                <input type="text" class="form-control" id="motor" name="motor" value="<?php echo $categoria[0]->motor;?>"required>
+                <input type="text" class="form-control" id="motor" name="motor" value="<?=$categoria[0]->motor;?>"required>
             </div>
             <div class="mb-3">
                 <label for="imagenCatalogo" class="form-label">imagen de Categoria</label>
-                <input type="text" class="form-control" id="imagenCategoria" name="imagenCategoria" value="<?php echo $categoria[0]->imagenCategoria;?>"required>
+                <input type="text" class="form-control" id="imagenCategoria" name="imagenCategoria" value="<?=$categoria[0]->imagenCategoria;?>"required>
             </div>
             
             <button type="submit" class="btn btn-primary">Modificar</button>

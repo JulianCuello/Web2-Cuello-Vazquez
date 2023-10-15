@@ -6,27 +6,27 @@ require './templates/task/header.phtml';
         <table class="table">
             <thead>
                 <tr>
-                    <th>Categoria</th>
-                    <th>Material</th>
-                    <th>origen</th>
-                    <th>Motor</th>
-                    <th>Imagen Categoria</th>
-                    <th>Acciones</th>
+                    <th class="text-center">Categoria</th>
+                    <th class="text-center">Material</th>
+                    <th class="text-center">origen</th>
+                    <th class="text-center">Motor</th>
+                    <th class="text-center">Imagen Categoria</th>
+                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($categorias as $categoria) { ?>      
                     <tr>
-                        <td><?php echo $categoria->categoria; ?></td>
-                        <td><?php echo $categoria->material; ?></td>
-                        <td><?php echo $categoria->origen; ?></td>
-                        <td><?php echo $categoria->motor; ?></td>
-                        <td><img src="<?php echo $categoria->imagenCategoria; ?>"class="imagen" style="max-width: 80px"></td>
-                        <td>
-                            <a href="categoryId/<?php echo $categoria->idCategoria;?>" class="btn btn-primary">Ver Productos</a>
+                        <td class="text-center"><?= $categoria->categoria; ?></td>
+                        <td class="text-center"><?= $categoria->material; ?></td>
+                        <td class="text-center"><?= $categoria->origen; ?></td>
+                        <td class="text-center"><?= $categoria->motor; ?></td>
+                        <td class="text-center"><img src="<?= $categoria->imagenCategoria; ?>"class="imagen" style="max-width: 80px"></td>
+                        <td class="text-center">
+                            <a href="categoryId/<?= $categoria->idCategoria;?>" class="btn btn-primary">Ver Productos</a>
                             <?php if (AuthHelper::isAdmin()) { ?>
-                            <a href="removeCategory/<?php echo $categoria->idCategoria; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
-                            <a href="updateCategoryForm/<?php echo $categoria->idCategoria; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
+                            <a href="removeCategory/<?= $categoria->idCategoria; ?>" type="button" class='btn btn-danger ml-auto'>Eliminar</a>
+                            <a href="updateCategoryForm/<?= $categoria->idCategoria; ?>" type="button" class='btn btn-success ml-auto'>Modificar</a>
                             <?php } ?>
                         </td>
                         </tr>      

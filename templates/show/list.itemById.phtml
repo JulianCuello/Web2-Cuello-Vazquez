@@ -5,15 +5,15 @@
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="<?php echo $item->imagenProducto; ?>" class="img-fluid rounded-start" alt="Imagen del Producto">
+                    <img src="<?= $item->imagenProducto; ?>" class="img-fluid rounded-start" alt="Imagen del Producto">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $item->nombreProducto; ?></h5>
-                        <p class="card-text"><?php echo $item->idCodigoProducto; ?></p>
-                        <p class="card-text"><strong>Precio:</strong>$<?php echo $item->precio; ?></p>
-                        <p class="card-text"><strong>Marca:</strong> <?php echo $item->marca; ?></p>
-                        <p class="card-text"><strong>Categoría:</strong> <?php echo $item->categoria; ?></p>
+                        <h5 class="card-title"><?= $item->nombreProducto; ?></h5>
+                        <p class="card-text"><?= $item->idCodigoProducto; ?></p>
+                        <p class="card-text"><strong>Precio:</strong>$<?= $item->precio; ?></p>
+                        <p class="card-text"><strong>Marca:</strong> <?= $item->marca; ?></p>
+                        <p class="card-text"><strong>Categoría:</strong> <?= $item->categoria; ?></p>
                         <a href="list" class="btn btn-primary">Volver</a>
                     </div>
                 </div>

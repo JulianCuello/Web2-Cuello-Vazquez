@@ -6,10 +6,10 @@ require_once './app/controllers/auth.controller.php';
 require_once './app/controllers/show.controller.php';
 
 
-
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
 $action = 'list'; // accion por defecto
+
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
 }
@@ -38,79 +38,66 @@ if (!empty($_GET['action'])) {
 
 $params = explode('/', $action);
 
+//instancio una sola vez
+$listController = new ListController();
+$categoryController = new CategoryController();
+$authController = new AuthController();
+$showController = new showController();
+
 switch ($params[0]) {
 
     case 'list':
-        $controller = new ListController();
-        $controller->showList();
+        $listController->showList();
         break;
     case 'listId':
-        $controller = new ListController();
-        $controller->showListById($params[1]);
+        $listController->showListById($params[1]);
         break;
     case 'removeItem':
-        $controller = new ListController();
-        $controller->removeItem($params[1]);
+        $listController->removeItem($params[1]);
         break;
     case 'updateItemForm':
-        $controller = new ListController();
-        $controller->showFormUpdate($params[1]);
+        $listController->showFormUpdate($params[1]);
         break;
     case 'updateItem':
-        $controller = new ListController();
-        $controller->showUpdate();
+        $listController->showUpdate();
         break;
     case 'addItemForm':
-        $controller = new ListController();
-        $controller->showFormAlta();
+        $listController->showFormAlta();
         break;
     case 'addItem':
-        $controller = new ListController();
-        $controller->addItem();
+        $listController->addItem();
         break;
     case 'category':
-        $controller = new CategoryController();
-        $controller->showCategory();
+        $categoryController->showCategory();
         break;
     case 'categoryId':
-        $controller = new CategoryController();
-        $controller->showCategoryById($params[1]);
+        $categoryController->showCategoryById($params[1]);
         break;
     case 'removeCategory':
-        $controller = new categoryController();
-        $controller->removeCategory($params[1]);
+        $categoryController->removeCategory($params[1]);
         break;
     case 'updateCategoryForm':
-        $controller = new CategoryController();
-        $controller->showFormCategoryUpdate($params[1]);
+        $categoryController->showFormCategoryUpdate($params[1]);
         break;
     case 'updateCategory':
-        $controller = new categoryController();
-        $controller->showCategoryUpdate();
+        $categoryController->showCategoryUpdate();
         break;
     case 'addCategoryForm':
-        $controller = new categoryController();
-        $controller->showFormCategory();
+        $categoryController->showFormCategory();
         break;
     case 'addCategory':
-        $controller = new categoryController();
-        $controller->addCategory();
+        $categoryController->addCategory();
         break;
     case 'login':
-        $controller = new AuthController();
-        $controller->showLogin();
+        $authController->showLogin();
         break;
     case 'logout':
-        $controller = new AuthController();
-        $controller->logout();
+        $authController->logout();
         break;
     case 'auth':
-        $controller = new AuthController();
-        $controller->auth();
+        $authController->auth();
         break;
     default:
-        $controller = new showController();
-        $controller->showError404("Page--Not--Found");
+        $showController->showError("404-Not-Found");
         break;
-        
 }

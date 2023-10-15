@@ -1,5 +1,5 @@
 <?php
-
+    //vista de categorias
     class CategoryView{
 
     public function renderCategory($categorias,$adm){

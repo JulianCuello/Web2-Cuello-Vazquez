@@ -8,32 +8,32 @@ require_once 'templates/task/header.phtml';  ?>
             
             <select class="form-select" id="categoria" name="idCategoria">
                 <?php foreach ($categoria as $cat) { ?>
-                    <option value="<?php echo $cat->idCategoria; ?>"><?php echo $cat->categoria; ?></option>
+                    <option value="<?= $cat->idCategoria; ?>"><?= $cat->categoria; ?></option>
                 <?php } ?>
             </select>
         </div>
         <div class="mb-1">
-            <input type="hidden" class="form-control" id="idProducto" name="idProducto" value="<?php echo $item[0]->idProducto; ?>" required>
+            <input type="hidden" class="form-control" id="idProducto" name="idProducto" value="<?= $item[0]->idProducto; ?>" required>
         </div>
         <div class="mb-1">
             <label for="idCodigoProducto" class="form-label">Código de Producto</label>
-            <input type="text" class="form-control" id="idCodigoProducto" name="idCodigoProducto" value="<?php echo $item[0]->idCodigoProducto; ?>">
+            <input type="text" class="form-control" id="idCodigoProducto" name="idCodigoProducto" value="<?= $item[0]->idCodigoProducto; ?>">
         </div>
         <div class="mb-1">
             <label for="nombreProducto" class="form-label">Nombre de Producto</label>
-            <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" value="<?php echo $item[0]->nombreProducto; ?>" required>
+            <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" value="<?= $item[0]->nombreProducto; ?>" required>
         </div>
         <div class="mb-1">
             <label for="precio" class="form-label">Precio</label>
-            <input type="number" class="form-control" id="precio" name="precio" value="<?php echo $item[0]->precio; ?>" required>
+            <input type="number" class="form-control" id="precio" name="precio" value="<?= $item[0]->precio; ?>" required>
         </div>
         <div class="mb-1">
             <label for="marca" class="form-label">Marca</label>
-            <input type="text" class="form-control" id="marca" name="marca" value="<?php echo $item[0]->marca; ?>" required>
+            <input type="text" class="form-control" id="marca" name="marca" value="<?= $item[0]->marca; ?>" required>
         </div>
         <div class="mb-1">
             <label for="imagenProducto" class="form-label">URL de la Imagen</label>
-            <input type="text" class="form-control" id="imagenProducto" name="imagenProducto" value="<?php echo $item[0]->imagenProducto; ?>" required>
+            <input type="text" class="form-control" id="imagenProducto" name="imagenProducto" value="<?= $item[0]->imagenProducto; ?>" required>
         </div>
         <button type="submit" class="btn btn-primary">Modificar</button>
     </form>

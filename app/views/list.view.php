@@ -1,15 +1,14 @@
 <?php
 
-
+//vista de productos
 class ListView {
 
-    public function renderList($list,$adm) {//check
+    public function renderList($list,$adm) {
         require('./templates/show/list.items.phtml');        
     }
     
     public function renderItemListById($list) {
-        require './templates/show/list.itemById.phtml';        
-        
+        require './templates/show/list.itemById.phtml';           
     }
 
     public function renderFormUpdate($categoria, $item) {
