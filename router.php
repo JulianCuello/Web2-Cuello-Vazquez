@@ -50,13 +50,19 @@ switch ($params[0]) {
         $listController->showList();
         break;
     case 'listId':
+        if(isset($params[1]))
         $listController->showListById($params[1]);
+        else $listController->showList();
         break;
     case 'removeItem':
+        if(isset($params[1]))
         $listController->removeItem($params[1]);
+        else $showController->showError("404-Not-Found");
         break;
     case 'updateItemForm':
+        if(isset($params[1]))
         $listController->showFormUpdate($params[1]);
+        else $showController->showError("404-Not-Found");
         break;
     case 'updateItem':
         $listController->showUpdate();
@@ -71,13 +77,19 @@ switch ($params[0]) {
         $categoryController->showCategory();
         break;
     case 'categoryId':
+        if(isset($params[1]))
         $categoryController->showCategoryById($params[1]);
+        $categoryController->showCategory();
         break;
     case 'removeCategory':
+        if(isset($params[1]))
         $categoryController->removeCategory($params[1]);
+        else $showController->showError("404-Not-Found");
         break;
     case 'updateCategoryForm':
+        if(isset($params[1]))
         $categoryController->showFormCategoryUpdate($params[1]);
+        else $showController->showError("404-Not-Found");
         break;
     case 'updateCategory':
         $categoryController->showCategoryUpdate();

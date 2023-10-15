@@ -8,7 +8,7 @@ class ListView {
     }
     
     public function renderItemListById($list) {
-        require './templates/show/list.itemById.phtml';           
+        require './templates/show/list.itemById.phtml';   
     }
 
     public function renderFormUpdate($categoria, $item) {
