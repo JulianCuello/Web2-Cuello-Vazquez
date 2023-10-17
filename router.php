@@ -79,7 +79,7 @@ switch ($params[0]) {
     case 'categoryId':
         if(isset($params[1]))
         $categoryController->showCategoryById($params[1]);
-        $categoryController->showCategory();
+        else $categoryController->showCategory();
         break;
     case 'removeCategory':
         if(isset($params[1]))

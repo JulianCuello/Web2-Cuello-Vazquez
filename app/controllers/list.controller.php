@@ -15,7 +15,7 @@ class ListController{
     private $modelCategory;
 
     public function __construct(){
-        //se instancian los dos modelos para no delegar mal, y que cada modelo acceda a su tabla correspondiente.
+        //se instancian los dos modelos para no delegar mal, y que cada modelo consulte solo a su tabla correspondiente.
         $this->model = new ListModel();
         $this->modelCategory = new CategoryModel();
         $this->view = new ListView();
@@ -86,13 +86,13 @@ class ListController{
         AuthHelper::verify();
         try {//verifico permisos, parametros validos y posible acceso sin previo acceso al form modificacion.
             if ($_POST && ValidationHelper::verifyForm($_POST)) {
-                $idProducto = $_POST['idProducto'];
-                $idCodigoProducto = $_POST['idCodigoProducto'];
-                $nombreProducto = $_POST['nombreProducto'];
-                $precio = $_POST['precio'];
-                $marca  = $_POST['marca'];
-                $imagenProducto = $_POST['imagenProducto'];
-                $idCategoria = $_POST['idCategoria'];
+                $idProducto = htmlspecialchars($_POST['idProducto']);
+                $idCodigoProducto = htmlspecialchars($_POST['idCodigoProducto']);
+                $nombreProducto = htmlspecialchars($_POST['nombreProducto']);
+                $precio = htmlspecialchars($_POST['precio']);
+                $marca  = htmlspecialchars($_POST['marca']);
+                $imagenProducto = htmlspecialchars($_POST['imagenProducto']);
+                $idCategoria = htmlspecialchars($_POST['idCategoria']);
 
                 $registroModificado = $this->model->updateItem($idProducto, $idCodigoProducto, $nombreProducto, $precio, $marca, $imagenProducto, $idCategoria);
 
@@ -121,12 +121,12 @@ class ListController{
         AuthHelper::verify();
         try {//verifico permisos, parametros validos y posible acceso sin previo acceso al form alta.
             if ($_POST && ValidationHelper::verifyForm($_POST)) {
-                $idCodigoProducto = $_POST['idCodigoProducto'];
-                $nombreProducto = $_POST['nombreProducto'];
-                $precio = $_POST['precio'];
-                $marca  = $_POST['marca'];
-                $imagenProducto = $_POST['imagenProducto'];
-                $idCategoria = $_POST['idCategoria'];
+                $idCodigoProducto =htmlspecialchars($_POST['idCodigoProducto']);
+                $nombreProducto =htmlspecialchars($_POST['nombreProducto']);
+                $precio =htmlspecialchars($_POST['precio']);
+                $marca  =htmlspecialchars($_POST['marca']);
+                $imagenProducto =htmlspecialchars($_POST['imagenProducto']);
+                $idCategoria =htmlspecialchars($_POST['idCategoria']);
 
                 $id = $this->model->insertItem($idCodigoProducto, $nombreProducto, $precio, $marca, $imagenProducto, $idCategoria);
 

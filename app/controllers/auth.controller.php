@@ -17,7 +17,7 @@ class AuthController{
     }
 
     public function auth(){ //autenticacion de Usuario
-        $email = $_POST['email'];
+        $email = htmlspecialchars($_POST['email']);
         $password = $_POST['password'];
 
         if (empty($email) || empty($password)) {
@@ -25,15 +25,16 @@ class AuthController{
             return;
         }
 
-        //traigo el usuario de la base de datos
+        //busco al usuario en la base
         $user = $this->model->getByEmail($email);
 
         if ($user && password_verify($password, $user->password)) {
-            // se autentican las credenciales y permito el acceso
+            //si es valida la utenticacion se loguea y redirije.
             AuthHelper::login($user);
             header('Location: ' . BASE_URL . "list");
+            exit();
         } else {
-            //se redirije para volver a ingresar.
+            //no fue autenticado.
             $this->view->showLogin('Usuario inválido'); 
         }
     }
@@ -45,6 +46,7 @@ class AuthController{
 
 }
 
+
 // $clave='admin';
-// echo password_hash($clave,PASSWORD_BCRYPT);
+// $hash= password_hash($clave,PASSWORD_BCRYPT);
 

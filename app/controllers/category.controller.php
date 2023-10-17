@@ -92,11 +92,11 @@ class CategoryController
         AuthHelper::verify();
         try {//verifico permisos, parametros validos y posible acceso sin previo acceso al form modificacion.
             if ($_POST && ValidationHelper::verifyForm($_POST)) {
-                $idCategoria = $_POST['idCategoria'];
-                $material = $_POST['material'];
-                $origen = $_POST['origen'];
-                $motor = $_POST['motor'];
-                $imagenCategoria = $_POST['imagenCategoria'];
+                $idCategoria =htmlspecialchars($_POST['idCategoria']);
+                $material =htmlspecialchars($_POST['material']);
+                $origen =htmlspecialchars($_POST['origen']);
+                $motor =htmlspecialchars($_POST['motor']);
+                $imagenCategoria =htmlspecialchars($_POST['imagenCategoria']);
 
                 $categoriaModificada = $this->model->updateItem($idCategoria, $material, $origen, $motor, $imagenCategoria);
                 if ($categoriaModificada > 0) {
@@ -120,16 +120,15 @@ class CategoryController
     }
 
 
-    public function addCategory()
-    {
+    public function addCategory(){
         AuthHelper::verify();
-        try {//verifico permisos, parametros validos y posible acceso sin previo acceso al form de alta.
+        try {//verifico permisos, parametros validos y posible acceso sin datos al form de alta.
             if ($_POST && ValidationHelper::verifyForm($_POST)) {
-                $categoria = $_POST['categoria'];
-                $material = $_POST['material'];
-                $origen = $_POST['origen'];
-                $motor = $_POST['motor'];
-                $imagenCategoria = $_POST['imagenCategoria'];
+                $categoria =htmlspecialchars($_POST['categoria']);
+                $material =htmlspecialchars($_POST['material']);
+                $origen =htmlspecialchars($_POST['origen']);
+                $motor =htmlspecialchars($_POST['motor']);
+                $imagenCategoria =htmlspecialchars($_POST['imagenCategoria']);
 
                 $id = $this->model->insertCategory($categoria, $material, $origen, $motor, $imagenCategoria);
                 if ($id) {

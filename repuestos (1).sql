@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2023 a las 13:57:20
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Tiempo de generación: 16-10-2023 a las 22:35:44
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,12 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`idCategoria`, `categoria`, `material`, `origen`, `motor`, `imagenCategoria`) VALUES
-(1, '1', 'zczxczxc', '1', 'gasoil', 'asdas');
+(1, 'motor', 'aluminio', 'Italia', 'diesel', 'img/motor.jpg'),
+(2, 'Interior', 'plastico', 'China', 'no aplica', 'img/interior.jpg'),
+(3, 'carroceria', 'chapa', 'Taiwan', 'no aplica', 'img/carroceria.jpg'),
+(4, 'suspension', 'metal', 'China', 'nafta-diesel', 'img/suspension.jpg'),
+(5, 'frenos', 'asbesto', 'China', 'nafta-diesel', 'img/frenos.jpg'),
+(6, 'refrigeracion', 'aluminio', 'China', 'nafta', 'img/refrigeracion.png');
 
 -- --------------------------------------------------------
 
@@ -64,7 +69,14 @@ CREATE TABLE `repuestos` (
 --
 
 INSERT INTO `repuestos` (`idProducto`, `idCodigoProducto`, `nombreProducto`, `precio`, `marca`, `imagenProducto`, `IdCategoria`) VALUES
-(3, 30102658, 'amortiguador', 223232, '232323', '232323', 1);
+(1, 7087808, 'Filtro', 3700, 'Fiat', 'img/filtro.jpg', 1),
+(57, 552212, 'Panel puerta izquierda', 23000, 'Renault', 'img/panelpuerta.jpg', 2),
+(58, 55771100, 'parabrisas', 54000, 'Fiat', 'img/parabrisas.jpg', 3),
+(59, 958710, 'Amortiguador', 33000, 'Citroen', 'img/amortiguador.jpg', 4),
+(60, 5681222, 'disco freno', 55100, 'Fiat', 'img/frenos.jpg', 5),
+(61, 88510303, 'radiador agua', 80000, 'Renault', 'img/refrigeracion.png', 1),
+(62, 55001321, 'optica delantera', 230000, 'Mercedes', 'img/optica.jpg', 3),
+(64, 5540321, 'filtro', 2500, 'Peugeot', 'img/filtro.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -116,13 +128,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idCategoria` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `repuestos`
 --
 ALTER TABLE `repuestos`
-  MODIFY `idProducto` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idProducto` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
